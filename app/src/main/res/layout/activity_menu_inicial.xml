@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Menu_Inicial"
+    android:background="#279FF5">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardBarraSuperior"
+        style="@style/Widget.Material3.CardView.Outlined"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginHorizontal="8dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/white"
+        app:cardCornerRadius="30dp"
+        app:strokeColor="#043A61"
+        app:strokeWidth="5dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/logo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.036"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtNombreJugador"
+                android:layout_width="199dp"
+                android:layout_height="28dp"
+                android:fontFamily="monospace"
+                android:text="Ejemplo Nombre"
+                android:textColor="#0F172A"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.808"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.Material3.CardView.Outlined"
+        android:layout_width="352dp"
+        android:layout_height="570dp"
+        android:layout_marginTop="45dp"
+
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.493"
+        app:strokeColor="#043A61"
+        app:strokeWidth="5dp"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:padding="16dp">
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/id_btn_menu_parking"
+                android:layout_width="240dp"
+                android:layout_height="58dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="35dp"
+                android:fontFamily="monospace"
+                android:text="@string/menu_btn_parking"
+                android:textAllCaps="true"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                app:backgroundTint="#043A61"
+                app:cornerRadius="29dp"
+                app:elevation="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:icon="@drawable/icon_parking"
+                app:iconTint="@color/white"
+                app:iconSize="30dp"/>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/menu_text_parking"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/id_btn_menu_parking" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/id_btn_menu_reserv"
+                android:layout_width="240dp"
+                android:layout_height="58dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="monospace"
+                android:text="@string/menu_btn_reserv"
+                android:textAllCaps="true"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                app:backgroundTint="#043A61"
+                app:cornerRadius="29dp"
+                app:elevation="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView"
+                app:icon="@drawable/icon_reservas"
+                app:iconTint="@color/white"
+                app:iconSize="30dp"/>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/menu_text_reserv"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/id_btn_menu_reserv" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/id_btn_menu_account"
+                android:layout_width="240dp"
+                android:layout_height="58dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="monospace"
+                android:onClick="cuentaUsuario"
+                android:text="@string/menu_btn_account"
+                android:textAllCaps="true"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:backgroundTint="#043A61"
+                app:cornerRadius="29dp"
+                app:elevation="5dp"
+                app:icon="@drawable/icon_account"
+                app:iconSize="30dp"
+                app:iconTint="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="220dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-smallcaps"
+                android:text="@string/menu_text_account"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/id_btn_menu_account" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/id_btn_menu_exit"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="180dp"
+                android:layout_height="58dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="64dp"
+                android:fontFamily="monospace"
+                android:onClick="salirApp"
+                android:text="@string/menu_btn_exit"
+                android:textAllCaps="true"
+                android:textColor="#1E293B"
+                android:textSize="16dp"
+                app:cornerRadius="29dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                app:strokeColor="#1E293B"
+                app:strokeWidth="2dp" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="107dp"
+                android:layout_height="104dp"
+                android:layout_marginTop="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3"
+                app:srcCompat="@mipmap/logo" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

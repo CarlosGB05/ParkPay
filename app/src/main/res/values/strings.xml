@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">ParkPay</string>
+    <string name="creator_name">Carlos Gómez</string>
+    <!-- BOTONES -->
+    <string name="bt_accept">Aceptar</string>
+    <string name="bt_play">Iniciar</string>
+    <string name="bt_canceled">Cancelar</string>
+
+    <!-- PAG LOGIN -->
+    <string name="login_title">Iniciar Sesión</string>
+    <string name="login_ph_email">Email@</string>
+    <string name="login_ph_password">Contraseña</string>
+    <string name="login_description_register">¿No tienes una cuenta?</string>
+    <string name="login_register">Regístrate</string>
+
+    <!-- PAG REGISTRO -->
+    <string name="register_title">Regístrate</string>
+    <string name="register_create">Crear Cuenta</string>
+    <string name="register_name">Nombre y Apellido</string>
+    <string name="register_dni">DNI</string>
+    <string name="register_number">Teléfono</string>
+    <string name="register_confPassw">Confirmar Contraseña</string>
+    <string name="register_username">Nombre Usuario</string>
+
+    <!-- PAG MENU -->
+    <string name="menu_title">Parkay</string>
+    <string name="menu_btn_parking">Buscar Parkings</string>
+    <string name="menu_text_parking">Aquí se podrán buscar los Parkings a partir de una ubicación</string>
+    <string name="menu_btn_reserv">Mis Reservas</string>
+    <string name="menu_text_reserv">Aquí se mostrarán las reservas de los Parkings alquilados</string>
+    <string name="menu_btn_account">Cuenta</string>
+    <string name="menu_text_account">Aquí se mostrará la información del usuario</string>
+    <string name="menu_btn_exit">Salir App</string>
+
+    <!-- PAG USUARIO -->
+
+    <!-- BOTONES -->
+</resources>
