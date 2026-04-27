@@ -14,6 +14,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import models.Usuario;
+
 public class Login extends AppCompatActivity {
 
     private Button bt_comprobar, bt_registro;
@@ -21,6 +23,7 @@ public class Login extends AppCompatActivity {
     private TextView resultadoError;
     private String errorInfo;
 
+    private Usuario usuario;
     // private UsuarioDAO dao;
 
     @Override
@@ -40,6 +43,7 @@ public class Login extends AppCompatActivity {
         this.text_passw = findViewById(R.id.id_text_login_passw);
         this.resultadoError = findViewById(R.id.idResultReg);
 
+        this.usuario = (Usuario) getIntent().getSerializableExtra("usuario");
     }
 
     public void iniciarAplicacion(View view) {
@@ -48,22 +52,47 @@ public class Login extends AppCompatActivity {
         String datoContra = text_passw.getText().toString();
         errorInfo = "";
         resultadoError.setText("");
+
+        // Comprueba si los campos no han sido rellenados
+        if(datoCorreo.isEmpty() && datoContra.isEmpty()){
+            errorInfo += "Rellena los campos \n";
+            resultadoError.setText(errorInfo);
+            return;
+        }
+
         if(datoCorreo.isEmpty() || datoContra.isEmpty()){
             if(datoCorreo.isEmpty()) {
-                errorInfo += "Correo incorrecto \n";
+                errorInfo += "Rellena el Correo \n";
                 resultadoError.setText(errorInfo);
                 text_email.setText("");
             }
             if(datoContra.isEmpty()) {
-                errorInfo += "Contraseña incorrecto \n";
+                errorInfo += "Rellena la Contraseña";
                 resultadoError.setText(errorInfo);
                 text_passw.setText("");
             }
-        }else{
+        } else {
+            // Cambiar al DAO de abajo
+            if (this.usuario != null) {
+                if (datoCorreo.equals(this.usuario.getEmail()) &&
+                        datoContra.equals(this.usuario.getPassword())) {
+                    Intent intent = new Intent(this, Menu_Inicial.class);
+                    intent.putExtra("usuario",this.usuario);
+                    startActivity(intent);
+                } else {
+                    errorInfo += "Correo o contraseña \n incorrectos";
+                    resultadoError.setText(errorInfo);
+                    text_email.setText("");
+                    text_passw.setText("");
+                }
+            } else {
+                errorInfo += "Correo o contraseña incorrectos \n";
+                resultadoError.setText(errorInfo);
+                text_email.setText("");
+                text_passw.setText("");
+            }
 
-            Intent intent = new Intent(this, Menu_Inicial.class);
-            startActivity(intent);
-
+            // Metodo DAO
 //            Usuario usuario = dao.buscarUsuario(datoCorreo,datoContra);
 //            if(usuario != null) {
 //                Toast.makeText(this,"Usuario Correcto",Toast.LENGTH_SHORT).show();
@@ -78,6 +107,7 @@ public class Login extends AppCompatActivity {
     }
 
     public void irPagRegistro(View view) {
+        resultadoError.setText("");
         Intent intent = new Intent(this, Registro.class);
         startActivity(intent);
     }

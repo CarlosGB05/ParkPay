@@ -42,13 +42,13 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txtNombreJugador"
-                android:layout_width="199dp"
-                android:layout_height="28dp"
+                android:id="@+id/id_text_username_menu"
+                android:layout_width="244dp"
+                android:layout_height="29dp"
                 android:fontFamily="monospace"
-                android:text="Ejemplo Nombre"
+                android:textAlignment="center"
                 android:textColor="#0F172A"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

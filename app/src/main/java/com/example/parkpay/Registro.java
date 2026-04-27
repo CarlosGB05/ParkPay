@@ -11,9 +11,12 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import models.Usuario;
+
 public class Registro extends AppCompatActivity {
 
     private EditText text_name,text_phone, text_username,text_email, text_passw, text_confPassw;
+    private Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,7 @@ public class Registro extends AppCompatActivity {
         this.text_email = findViewById(R.id.id_text_register_email);
         this.text_passw = findViewById(R.id.id_text_register_passw);
         this.text_confPassw = findViewById(R.id.id_text_register_confPassw);
+        this.usuario = null;
     }
 
     public void crearUsuario(View view) {
@@ -43,8 +47,8 @@ public class Registro extends AppCompatActivity {
         String infoConfPassw = this.text_confPassw.getText().toString();
         String info = "Rellene los datos";
 
-        if ( infoName.isEmpty() && infoPhone.isEmpty() && infoUsername.isEmpty() &&
-                infoEmail.isEmpty() && infoPassw.isEmpty() && infoConfPassw.isEmpty()) {
+        if ( infoName.isEmpty() || infoPhone.isEmpty() || infoUsername.isEmpty() ||
+                infoEmail.isEmpty() || infoPassw.isEmpty() || infoConfPassw.isEmpty()) {
             this.text_name.setError(info);
             this.text_phone.setError(info);
             this.text_username.setError(info);
@@ -52,7 +56,11 @@ public class Registro extends AppCompatActivity {
             this.text_passw.setError(info);
             this.text_confPassw.setError(info);
         } else {
+            // Mas adelante añador DAO y NOTIFICACION EMAIL DE REGISTRO
             Intent intent = new Intent(this, Login.class);
+            this.usuario = new Usuario(infoName, Integer.valueOf(infoPhone), infoUsername,
+                    infoEmail, infoPassw);
+            intent.putExtra("usuario",usuario);
             startActivity(intent);
         }
     }

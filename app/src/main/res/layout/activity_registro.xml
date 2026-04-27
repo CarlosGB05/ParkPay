@@ -46,7 +46,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_name"
                 android:layout_width="300dp"
-                android:layout_height="53dp"
+                android:layout_height="55dp"
                 android:layout_marginTop="32dp"
                 android:hint="@string/register_name"
                 app:boxBackgroundMode="outline"
@@ -75,7 +75,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_phone"
                 android:layout_width="300dp"
-                android:layout_height="53dp"
+                android:layout_height="55dp"
                 android:layout_marginTop="15dp"
                 android:hint="@string/register_number"
                 app:boxBackgroundMode="outline"
@@ -103,7 +103,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_username"
                 android:layout_width="300dp"
-                android:layout_height="53dp"
+                android:layout_height="55dp"
                 android:layout_marginTop="30dp"
                 android:hint="@string/register_username"
                 app:boxBackgroundMode="outline"
@@ -132,7 +132,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_email"
                 android:layout_width="300dp"
-                android:layout_height="53dp"
+                android:layout_height="55dp"
                 android:layout_marginTop="15dp"
                 android:hint="@string/login_ph_email"
                 app:boxBackgroundMode="outline"
@@ -160,7 +160,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_passw"
                 android:layout_width="300dp"
-                android:layout_height="53dp"
+                android:layout_height="55dp"
                 android:layout_marginTop="15dp"
                 android:hint="@string/login_ph_password"
                 app:boxBackgroundMode="outline"
@@ -190,7 +190,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_confPassw"
                 android:layout_width="300dp"
-                android:layout_height="53dp"
+                android:layout_height="55dp"
                 android:layout_marginTop="15dp"
                 android:hint="@string/register_confPassw"
                 app:boxBackgroundMode="outline"
@@ -222,7 +222,7 @@
                 android:layout_width="240dp"
                 android:layout_height="58dp"
                 android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="16dp"
                 android:fontFamily="monospace"
                 android:onClick="crearUsuario"
                 android:text="@string/register_create"
