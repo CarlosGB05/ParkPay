@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,12 +12,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import dao.UsuarioDAO;
 import models.Usuario;
 
 public class Registro extends AppCompatActivity {
 
     private EditText text_name,text_phone, text_username,text_email, text_passw, text_confPassw;
     private Usuario usuario;
+    private UsuarioDAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,28 +43,73 @@ public class Registro extends AppCompatActivity {
 
     public void crearUsuario(View view) {
         String infoName = this.text_name.getText().toString();
-        String infoPhone = this.text_phone.getText().toString();
+
+        String valorTf = this.text_phone.getText().toString();
+        Integer infoPhone;
+        if(valorTf.isEmpty()) {
+            infoPhone = 0;
+        } else {
+            infoPhone = Integer.parseInt(valorTf);
+        }
+
         String infoUsername = this.text_username.getText().toString();
         String infoEmail = this.text_email.getText().toString();
         String infoPassw = this.text_passw.getText().toString();
         String infoConfPassw = this.text_confPassw.getText().toString();
-        String info = "Rellene los datos";
+        String infoEmpty = "Rellena todos los datos";
+        String infoNameLongitud = "Máx 20 caracteres";
+        String infoTelefLongitud = "Máx 9 Números";
+        String infoEmailIncorrect = "No es un Email real";
+        String infoPasswIncorrect = "No coinciden";
 
-        if ( infoName.isEmpty() || infoPhone.isEmpty() || infoUsername.isEmpty() ||
-                infoEmail.isEmpty() || infoPassw.isEmpty() || infoConfPassw.isEmpty()) {
-            this.text_name.setError(info);
-            this.text_phone.setError(info);
-            this.text_username.setError(info);
-            this.text_email.setError(info);
-            this.text_passw.setError(info);
-            this.text_confPassw.setError(info);
-        } else {
-            // Mas adelante añador DAO y NOTIFICACION EMAIL DE REGISTRO
+        if ((infoName.isEmpty() && infoPhone == 0 && infoUsername.isEmpty() &&
+                infoEmail.isEmpty() && infoPassw.isEmpty() && infoConfPassw.isEmpty()) &&
+                (infoName.isEmpty() || infoPhone == 0 || infoUsername.isEmpty() ||
+                        infoEmail.isEmpty() || infoPassw.isEmpty() || infoConfPassw.isEmpty())) {
+            this.text_name.setError(infoEmpty);
+            this.text_phone.setError(infoEmpty);
+            this.text_username.setError(infoEmpty);
+            this.text_email.setError(infoEmpty);
+            this.text_passw.setError(infoEmpty);
+            this.text_confPassw.setError(infoEmpty);
+            return;
+        }
+
+        if(infoName.length() > 20 || infoUsername.length() > 20) {
+            this.text_name.setError(infoNameLongitud);
+            this.text_username.setError(infoNameLongitud);
+            return;
+        }
+
+        if(infoPhone.toString().length() < 9 || infoPhone.toString().length() > 9) {
+            this.text_phone.setError(infoTelefLongitud);
+            return;
+        }
+
+        if(!android.util.Patterns.EMAIL_ADDRESS.matcher(infoEmail).matches()) {
+            this.text_email.setError(infoEmailIncorrect);
+            return;
+        }
+
+        if(!infoConfPassw.equals(infoPassw)) {
+            this.text_passw.setError(infoPasswIncorrect);
+            this.text_confPassw.setError(infoPasswIncorrect);
+            return;
+        }
+
+        this.dao = new UsuarioDAO();
+        this.usuario = new Usuario(infoName, infoEmail, infoPhone, infoUsername, infoPassw);
+        if(this.dao.insertarUsuario(this.usuario)) {
+            this.dao.cerrarConexion();
+            Toast.makeText(this, "Usuario " +this.text_username.getText().toString()+ "creado",Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, Login.class);
-            this.usuario = new Usuario(infoName, Integer.valueOf(infoPhone), infoUsername,
-                    infoEmail, infoPassw);
             intent.putExtra("usuario",usuario);
             startActivity(intent);
+        } else {
+            Toast.makeText(this, "Error al crear el Usuario " +this.text_username,Toast.LENGTH_LONG).show();
+            this.dao.cerrarConexion();
         }
+
+
     }
 }

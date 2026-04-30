@@ -14,6 +14,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import dao.UsuarioDAO;
 import models.Usuario;
 
 public class Login extends AppCompatActivity {
@@ -24,7 +25,7 @@ public class Login extends AppCompatActivity {
     private String errorInfo;
 
     private Usuario usuario;
-    // private UsuarioDAO dao;
+    private UsuarioDAO dao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +45,10 @@ public class Login extends AppCompatActivity {
         this.resultadoError = findViewById(R.id.idResultReg);
 
         this.usuario = (Usuario) getIntent().getSerializableExtra("usuario");
+        this.dao = null;
     }
 
     public void iniciarAplicacion(View view) {
-        //dao = new UsuarioDAO();
         String datoCorreo = text_email.getText().toString();
         String datoContra = text_passw.getText().toString();
         errorInfo = "";
@@ -55,11 +56,12 @@ public class Login extends AppCompatActivity {
 
         // Comprueba si los campos no han sido rellenados
         if(datoCorreo.isEmpty() && datoContra.isEmpty()){
-            errorInfo += "Rellena los campos \n";
+            errorInfo += "Rellena los campos";
             resultadoError.setText(errorInfo);
             return;
         }
 
+        // Comprueba cuales son los campos vacios
         if(datoCorreo.isEmpty() || datoContra.isEmpty()){
             if(datoCorreo.isEmpty()) {
                 errorInfo += "Rellena el Correo \n";
@@ -71,39 +73,30 @@ public class Login extends AppCompatActivity {
                 resultadoError.setText(errorInfo);
                 text_passw.setText("");
             }
-        } else {
-            // Cambiar al DAO de abajo
-            if (this.usuario != null) {
-                if (datoCorreo.equals(this.usuario.getEmail()) &&
-                        datoContra.equals(this.usuario.getPassword())) {
-                    Intent intent = new Intent(this, Menu_Inicial.class);
-                    intent.putExtra("usuario",this.usuario);
-                    startActivity(intent);
-                } else {
-                    errorInfo += "Correo o contraseña \n incorrectos";
-                    resultadoError.setText(errorInfo);
-                    text_email.setText("");
-                    text_passw.setText("");
-                }
+            return;
+        }
+
+        dao = new UsuarioDAO();
+        Usuario usuario = dao.buscarUsuario(datoCorreo);
+        if(usuario != null) {
+            if(datoContra.equals(usuario.getPassword())) {
+                dao.cerrarConexion();
+                Intent intent = new Intent(this, Menu_Inicial.class);
+                intent.putExtra("usuario", usuario);
+                startActivity(intent);
             } else {
-                errorInfo += "Correo o contraseña incorrectos \n";
-                resultadoError.setText(errorInfo);
-                text_email.setText("");
+                dao.cerrarConexion();
+                resultadoError.setText("Contraseña Incorrecta");
                 text_passw.setText("");
+                return;
             }
 
-            // Metodo DAO
-//            Usuario usuario = dao.buscarUsuario(datoCorreo,datoContra);
-//            if(usuario != null) {
-//                Toast.makeText(this,"Usuario Correcto",Toast.LENGTH_SHORT).show();
-//                dao.cerrarConexion();
-//                Intent intent = new Intent(this, MenuPrincipal.class);
-//                intent.putExtra("usuario", usuario);
-//                startActivity(intent);
-//            }else{
-//                Toast.makeText(this,"Usuario No Encontrado",Toast.LENGTH_SHORT).show();
-//            }
+        }else{
+            dao.cerrarConexion();
+            resultadoError.setText("Usuario No Existe");
+            return;
         }
+
     }
 
     public void irPagRegistro(View view) {

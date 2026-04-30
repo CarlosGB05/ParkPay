@@ -41,6 +41,9 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
 
+    // Implementar Conexion con la BBDD
+    implementation("org.postgresql:postgresql:42.2.9")
+
     // APIs para el diseño
     implementation("com.google.android.material:material:1.12.0")
 }

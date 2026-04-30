@@ -7,7 +7,8 @@ public class Usuario implements Serializable {
     private int idUsuario, telefono;
     private String nombreCompleto, nombreUsuario, email, dni, password;
 
-    public Usuario(String nc, int tf, String nu, String e, String pw) {
+    // Constructor para cuando se registra el Usuario
+    public Usuario(String nc, String e, int tf, String nu, String pw) {
         this.nombreCompleto = nc;
         this.telefono = tf;
         this.nombreUsuario = nu;
@@ -15,6 +16,8 @@ public class Usuario implements Serializable {
         this.dni = "";
         this.password = pw;
     }
+
+    // Constructor para cuando se busca y se encuentra un Usuario
 
     public int getIdUsuario() {
         return idUsuario;
