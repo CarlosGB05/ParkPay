@@ -53,5 +53,8 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
 
     // APIs necesarias para la App
+    // Maps SDK
     implementation("com.google.android.gms:play-services-maps:18.2.0")
+    // Places API (La nueva versión)
+    implementation("com.google.android.libraries.places:places:3.3.0")
 }

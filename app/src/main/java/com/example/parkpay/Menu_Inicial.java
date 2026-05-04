@@ -40,7 +40,7 @@ public class Menu_Inicial extends AppCompatActivity {
     }
 
     public void buscarParkings(View view) {
-        Intent intent = new Intent(this, MapsActivity.class);
+        Intent intent = new Intent(this, Buscar_Parking.class);
         startActivity(intent);
     }
 

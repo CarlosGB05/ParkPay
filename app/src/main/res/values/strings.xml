@@ -35,5 +35,9 @@
 
     <!-- PAG USUARIO -->
 
-    <!-- BOTONES -->
+    <!-- PAG BUSCAR PARKING -->
+    <string name="parking_btn_buscar">Buscar Parkings</string>
+
+
+
 </resources>

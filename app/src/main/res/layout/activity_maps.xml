@@ -4,6 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/map"
     android:name="com.google.android.gms.maps.SupportMapFragment"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MapsActivity" />
+    android:layout_width="330dp"
+    android:layout_height="400dp"
+    tools:context=".MapsActivity"
+    map:layout_constraintBottom_toBottomOf="parent"
+    map:layout_constraintEnd_toEndOf="parent"
+    map:layout_constraintStart_toStartOf="parent"
+    map:layout_constraintTop_toTopOf="parent"
+    android:layout_marginLeft="40dp"
+    android:layout_marginTop="180dp">
+
+</fragment>
+
