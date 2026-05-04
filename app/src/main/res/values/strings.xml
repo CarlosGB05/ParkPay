@@ -31,6 +31,7 @@
     <string name="menu_btn_account">Cuenta</string>
     <string name="menu_text_account">Aquí se mostrará la información del usuario</string>
     <string name="menu_btn_exit">Salir App</string>
+    <string name="title_activity_maps">MapsActivity</string>
 
     <!-- PAG USUARIO -->
 

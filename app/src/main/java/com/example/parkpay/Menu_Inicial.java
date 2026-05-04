@@ -30,12 +30,17 @@ public class Menu_Inicial extends AppCompatActivity {
         });
 
         this.text_username = findViewById(R.id.id_text_username_menu);
-        this.usuario = (Usuario) getIntent().getSerializableExtra("usuario");
-        this.text_username.setText(this.usuario.getNombreUsuario());
+//        this.usuario = (Usuario) getIntent().getSerializableExtra("usuario");
+//        this.text_username.setText(this.usuario.getNombreUsuario());
     }
 
     public void salirApp(View view) {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    public void buscarParkings(View view) {
+        Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
 

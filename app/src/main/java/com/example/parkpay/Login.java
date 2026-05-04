@@ -76,26 +76,32 @@ public class Login extends AppCompatActivity {
             return;
         }
 
-        dao = new UsuarioDAO();
-        Usuario usuario = dao.buscarUsuario(datoCorreo);
-        if(usuario != null) {
-            if(datoContra.equals(usuario.getPassword())) {
-                dao.cerrarConexion();
-                Intent intent = new Intent(this, Menu_Inicial.class);
-                intent.putExtra("usuario", usuario);
-                startActivity(intent);
-            } else {
-                dao.cerrarConexion();
-                resultadoError.setText("Contraseña Incorrecta");
-                text_passw.setText("");
-                return;
-            }
-
-        }else{
-            dao.cerrarConexion();
-            resultadoError.setText("Usuario No Existe");
-            return;
+        if (datoCorreo.equals("prueba") && datoContra.equals("prueba")) {
+            Intent intent = new Intent(this, Menu_Inicial.class);
+            startActivity(intent);
         }
+
+//        dao = new UsuarioDAO();
+//        Usuario usuario = dao.buscarUsuario(datoCorreo);
+//        if(usuario != null) {
+//
+//            if(datoContra.equals(usuario.getPassword())) {
+//                dao.cerrarConexion();
+//                Intent intent = new Intent(this, Menu_Inicial.class);
+//                intent.putExtra("usuario", usuario);
+//                startActivity(intent);
+//            } else {
+//                dao.cerrarConexion();
+//                resultadoError.setText("Contraseña Incorrecta");
+//                text_passw.setText("");
+//                return;
+//            }
+//
+//        }else{
+//            dao.cerrarConexion();
+//            resultadoError.setText("Usuario No Existe");
+//            return;
+//        }
 
     }
 
