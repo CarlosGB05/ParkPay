@@ -44,6 +44,11 @@ public class Menu_Inicial extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void listaReservas(View view) {
+        Intent intent = new Intent(this, Practicar_APIs.class);
+        startActivity(intent);
+    }
+
     public void cuentaUsuario(View view) {
         Intent intent = new Intent(this, Info_Usuario.class);
         startActivity(intent);

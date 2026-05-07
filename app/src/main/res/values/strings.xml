@@ -34,10 +34,11 @@
     <string name="title_activity_maps">MapsActivity</string>
 
     <!-- PAG USUARIO -->
+    <string name="user_btn_edit">Editar Perfil</string>
+    <string name="user_btn_back">Volver al Menu</string>
 
     <!-- PAG BUSCAR PARKING -->
     <string name="parking_btn_buscar">Buscar Parkings</string>
-
 
 
 </resources>

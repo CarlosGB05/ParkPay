@@ -10,11 +10,14 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -24,7 +27,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.example.parkpay.databinding.ActivityMapsBinding;
+//import com.example.parkpay.databinding.ActivityMapsBinding;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -46,9 +49,11 @@ import java.util.List;
 public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private ActivityMapsBinding binding;
+//    private ActivityMapsBinding binding;
     private AutoCompleteTextView autoComplete;
     private PlacesClient placesClient;
+    private SeekBar barrita;
+    private TextView valorBarrita;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +63,34 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.fragmentContainerView);
         mapFragment.getMapAsync(this);
+
+        barrita = findViewById(R.id.id_seekBar);
+        valorBarrita = findViewById(R.id.id_text_valor_seekbar);
+        valorBarrita.setText("0Km");
+
+        barrita.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+            private Toast inicio = Toast.makeText(Buscar_Parking.this,"start",Toast.LENGTH_SHORT);
+            private Toast finalB = Toast.makeText(Buscar_Parking.this, "stop",Toast.LENGTH_SHORT);
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                valorBarrita.setText(String.valueOf(progress) + "Km");
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                finalB.cancel();
+                inicio.setGravity(Gravity.TOP|Gravity.LEFT, 60,110);
+                inicio.show();
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                inicio.cancel();
+                finalB.setGravity(Gravity.TOP|Gravity.RIGHT, 60,110);
+                finalB.show();
+            }
+        });
 
         // Inicializa Places con la clave de API que creaste en image_641463.png
         if (!Places.isInitialized()) {

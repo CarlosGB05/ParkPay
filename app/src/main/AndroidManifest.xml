@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ParkPay">
         <activity
+            android:name=".Editar_Usuario"
+            android:exported="false" />
+        <activity
             android:name=".Buscar_Parking"
             android:exported="false" />
         <!--

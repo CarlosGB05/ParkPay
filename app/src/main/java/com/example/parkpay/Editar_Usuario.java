@@ -1,9 +1,6 @@
 package com.example.parkpay;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,34 +8,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import models.Usuario;
-
-public class Info_Usuario extends AppCompatActivity {
-
-    private Usuario usuario;
+public class Editar_Usuario extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_info_usuario);
+        setContentView(R.layout.activity_editar_usuario);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-        this.usuario = (Usuario) getIntent().getSerializableExtra("usuario");
-    }
-
-    public void editarUsuario(View view) {
-        Intent intent = new Intent(this, Editar_Usuario.class);
-        intent.putExtra("usuario",usuario);
-        startActivity(intent);
-    }
-
-    public void volverMenu(View view) {
-        Intent intent = new Intent(this, Menu_Inicial.class);
-        startActivity(intent);
     }
 }
