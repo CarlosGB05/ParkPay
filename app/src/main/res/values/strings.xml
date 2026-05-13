@@ -36,6 +36,9 @@
     <!-- PAG USUARIO -->
     <string name="user_btn_edit">Editar Perfil</string>
     <string name="user_btn_back">Volver al Menu</string>
+    <string name="user_text_new_dni">Ej: 123456789</string>
+    <string name="user_update_user">Guardar Cambios</string>
+    <string name="user_update">Editar Usuario</string>
 
     <!-- PAG BUSCAR PARKING -->
     <string name="parking_btn_buscar">Buscar Parkings</string>

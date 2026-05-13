@@ -46,6 +46,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.Usuario;
+
 public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
@@ -54,6 +56,8 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
     private PlacesClient placesClient;
     private SeekBar barrita;
     private TextView valorBarrita;
+
+    private Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,11 +68,12 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
                 .findFragmentById(R.id.fragmentContainerView);
         mapFragment.getMapAsync(this);
 
-        barrita = findViewById(R.id.id_seekBar);
-        valorBarrita = findViewById(R.id.id_text_valor_seekbar);
-        valorBarrita.setText("0Km");
+        this.usuario = (Usuario) getIntent().getSerializableExtra("usuario");
+        this.barrita = findViewById(R.id.id_seekBar);
+        this.valorBarrita = findViewById(R.id.id_text_valor_seekbar);
+        this.valorBarrita.setText("0Km");
 
-        barrita.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        this.barrita.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             private Toast inicio = Toast.makeText(Buscar_Parking.this,"start",Toast.LENGTH_SHORT);
             private Toast finalB = Toast.makeText(Buscar_Parking.this, "stop",Toast.LENGTH_SHORT);
@@ -138,11 +143,6 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
                 autoComplete.clearFocus();      // Quita el cursor del buscador
             }
         });
-    }
-
-    public void volverMenu(View view) {
-        Intent intent = new Intent(this, Menu_Inicial.class);
-        startActivity(intent);
     }
 
     private void geolocalizarYFocalizar(String nombreLugar) {
@@ -228,17 +228,23 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
         });
     }
 
-    private void ocultarTeclado() {
-        // 1. Obtener el servicio del sistema encargado del teclado
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//    private void ocultarTeclado() {
+//        // 1. Obtener el servicio del sistema encargado del teclado
+//        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//
+//        // 2. Obtener la vista que tiene el foco actualmente
+//        View view = this.getCurrentFocus();
+//
+//        // 3. Si hay una vista con el foco, pedir al servicio que oculte el teclado
+//        if (view != null) {
+//            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+//        }
+//    }
 
-        // 2. Obtener la vista que tiene el foco actualmente
-        View view = this.getCurrentFocus();
-
-        // 3. Si hay una vista con el foco, pedir al servicio que oculte el teclado
-        if (view != null) {
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
+    public void volverMenu(View view) {
+        Intent intent = new Intent(this, Menu_Inicial.class);
+        intent.putExtra("usuario",usuario);
+        startActivity(intent);
     }
 
 }

@@ -17,7 +17,7 @@ import models.Usuario;
 
 public class Registro extends AppCompatActivity {
 
-    private EditText text_name,text_phone, text_username,text_email, text_passw, text_confPassw;
+    private EditText text_name,text_phone, text_dni,text_email, text_passw, text_confPassw;
     private Usuario usuario;
     private UsuarioDAO dao;
 
@@ -34,7 +34,7 @@ public class Registro extends AppCompatActivity {
 
         this.text_name = findViewById(R.id.id_text_register_name);
         this.text_phone = findViewById(R.id.id_text_register_phone);
-        this.text_username = findViewById(R.id.id_text_register_username);
+        this.text_dni = findViewById(R.id.id_text_register_dni);
         this.text_email = findViewById(R.id.id_text_register_email);
         this.text_passw = findViewById(R.id.id_text_register_passw);
         this.text_confPassw = findViewById(R.id.id_text_register_confPassw);
@@ -52,7 +52,7 @@ public class Registro extends AppCompatActivity {
             infoPhone = Integer.parseInt(valorTf);
         }
 
-        String infoUsername = this.text_username.getText().toString();
+        String infoDni = this.text_dni.getText().toString();
         String infoEmail = this.text_email.getText().toString();
         String infoPassw = this.text_passw.getText().toString();
         String infoConfPassw = this.text_confPassw.getText().toString();
@@ -62,24 +62,26 @@ public class Registro extends AppCompatActivity {
         String infoEmailIncorrect = "No es un Email real";
         String infoPasswIncorrect = "No coinciden";
 
-        if ((infoName.isEmpty() && infoPhone == 0 && infoUsername.isEmpty() &&
+        if ((infoName.isEmpty() && infoPhone == 0 && infoDni.isEmpty() &&
                 infoEmail.isEmpty() && infoPassw.isEmpty() && infoConfPassw.isEmpty()) &&
-                (infoName.isEmpty() || infoPhone == 0 || infoUsername.isEmpty() ||
+                (infoName.isEmpty() || infoPhone == 0 || infoDni.isEmpty() ||
                         infoEmail.isEmpty() || infoPassw.isEmpty() || infoConfPassw.isEmpty())) {
             this.text_name.setError(infoEmpty);
             this.text_phone.setError(infoEmpty);
-            this.text_username.setError(infoEmpty);
+            this.text_dni.setError(infoEmpty);
             this.text_email.setError(infoEmpty);
             this.text_passw.setError(infoEmpty);
             this.text_confPassw.setError(infoEmpty);
             return;
         }
 
-        if(infoName.length() > 20 || infoUsername.length() > 20) {
+        if(infoName.length() > 20) {
             this.text_name.setError(infoNameLongitud);
-            this.text_username.setError(infoNameLongitud);
             return;
         }
+
+        // Crear metodo de comprobar si el DNI es verdadero
+
 
         if(infoPhone.toString().length() < 9 || infoPhone.toString().length() > 9) {
             this.text_phone.setError(infoTelefLongitud);
@@ -98,18 +100,24 @@ public class Registro extends AppCompatActivity {
         }
 
         this.dao = new UsuarioDAO();
-        this.usuario = new Usuario(infoName, infoEmail, infoPhone, infoUsername, infoPassw);
+        this.usuario = new Usuario(infoName, infoEmail, infoPhone, infoDni, infoPassw);
         if(this.dao.insertarUsuario(this.usuario)) {
-            this.dao.cerrarConexion();
-            Toast.makeText(this, "Usuario " +this.text_username.getText().toString()+ "creado",Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this, Login.class);
-            intent.putExtra("usuario",usuario);
-            startActivity(intent);
+            Usuario usu = this.dao.buscarUsuario(this.usuario.getEmail());
+            if (this.dao.insertarIconoUsuario(usu.getIdUsuario())) {
+                this.dao.cerrarConexion();
+                Intent intent = new Intent(this, Login.class);
+                intent.putExtra("usuario",usuario);
+                startActivity(intent);
+            }
         } else {
-            Toast.makeText(this, "Error al crear el Usuario " +this.text_username,Toast.LENGTH_LONG).show();
             this.dao.cerrarConexion();
         }
 
+    }
 
+    public void cancelarRegistro(View view) {
+        Intent intent = new Intent(this, Login.class);
+        intent.putExtra("usuario",usuario);
+        startActivity(intent);
     }
 }

@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,7 +37,7 @@ public class Login extends AppCompatActivity {
             return insets;
         });
 
-        this.bt_comprobar = findViewById(R.id.id_bt_login);
+        this.bt_comprobar = findViewById(R.id.id_bt_accept_icon);
         this.bt_registro = findViewById(R.id.id_bt_registarse);
         this.text_email = findViewById(R.id.id_text_login_email);
         this.text_passw = findViewById(R.id.id_text_login_passw);
@@ -81,27 +80,25 @@ public class Login extends AppCompatActivity {
             startActivity(intent);
         }
 
-//        dao = new UsuarioDAO();
-//        Usuario usuario = dao.buscarUsuario(datoCorreo);
-//        if(usuario != null) {
-//
-//            if(datoContra.equals(usuario.getPassword())) {
-//                dao.cerrarConexion();
-//                Intent intent = new Intent(this, Menu_Inicial.class);
-//                intent.putExtra("usuario", usuario);
-//                startActivity(intent);
-//            } else {
-//                dao.cerrarConexion();
-//                resultadoError.setText("Contraseña Incorrecta");
-//                text_passw.setText("");
-//                return;
-//            }
-//
-//        }else{
-//            dao.cerrarConexion();
-//            resultadoError.setText("Usuario No Existe");
-//            return;
-//        }
+        dao = new UsuarioDAO();
+        Usuario usuario = dao.buscarUsuario(datoCorreo);
+        if(usuario != null) {
+            if(datoContra.equals(usuario.getPassword())) {
+                dao.cerrarConexion();
+                Intent intent = new Intent(this, Menu_Inicial.class);
+                intent.putExtra("usuario", usuario);
+                startActivity(intent);
+            } else {
+                dao.cerrarConexion();
+                resultadoError.setText("Contraseña Incorrecta");
+                text_passw.setText("");
+                return;
+            }
+        }else{
+            dao.cerrarConexion();
+            resultadoError.setText("Usuario No Existe");
+            return;
+        }
 
     }
 

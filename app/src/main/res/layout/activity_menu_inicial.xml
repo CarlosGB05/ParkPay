@@ -31,7 +31,7 @@
             android:padding="16dp">
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/id_icon_menu"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@mipmap/logo"
@@ -42,7 +42,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/id_text_username_menu"
+                android:id="@+id/id_text_name_menu"
                 android:layout_width="244dp"
                 android:layout_height="29dp"
                 android:fontFamily="monospace"
@@ -186,7 +186,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
             <TextView
-                android:id="@+id/id_text_user_name"
+                android:id="@+id/id_text_user_infoName"
                 android:layout_width="220dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -218,7 +218,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/id_text_user_name"
+                app:layout_constraintTop_toBottomOf="@+id/id_text_user_infoName"
                 app:strokeColor="#1E293B"
                 app:strokeWidth="2dp" />
 
@@ -230,7 +230,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/id_text_user_name"
+                app:layout_constraintTop_toBottomOf="@+id/id_text_user_infoName"
                 app:srcCompat="@mipmap/logo" />
 
 

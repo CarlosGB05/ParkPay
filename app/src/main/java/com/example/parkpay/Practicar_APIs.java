@@ -1,9 +1,16 @@
 package com.example.parkpay;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -12,9 +19,6 @@ import androidx.core.view.WindowInsetsCompat;
 import models.Usuario;
 
 public class Practicar_APIs extends AppCompatActivity {
-
-    private EditText infoUsuario;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +30,6 @@ public class Practicar_APIs extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-
-
-//        infoUsuario = findViewById(R.id.id_text_user_info);
 
     }
 }

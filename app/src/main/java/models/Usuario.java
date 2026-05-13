@@ -5,26 +5,29 @@ import java.io.Serializable;
 public class Usuario implements Serializable {
 
     private int idUsuario, telefono;
-    private String nombreCompleto, nombreUsuario, email, dni, password;
+    private String nombreCompleto, email, dni, password;
 
     // Constructor para cuando se registra el Usuario
-    public Usuario(String nc, String e, int tf, String nu, String pw) {
+    public Usuario(String nc, String e, int tf, String d, String pw) {
         this.nombreCompleto = nc;
         this.telefono = tf;
-        this.nombreUsuario = nu;
+        this.dni = d;
         this.email = e;
-        this.dni = "";
         this.password = pw;
     }
 
-    // Constructor para cuando se busca y se encuentra un Usuario
+    // Constructor con todos los parametros
+    public Usuario(int id, String nc, String e, int tf, String d, String pw) {
+        this.idUsuario = id;
+        this.nombreCompleto = nc;
+        this.email = e;
+        this.telefono = tf;
+        this.dni = d;
+        this.password = pw;
+    }
 
     public int getIdUsuario() {
         return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
     }
 
     public int getTelefono() {
@@ -41,14 +44,6 @@ public class Usuario implements Serializable {
 
     public void setNombreCompleto(String nombreCompleto) {
         this.nombreCompleto = nombreCompleto;
-    }
-
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
     }
 
     public String getEmail() {

@@ -120,7 +120,7 @@
                 app:strokeWidth="2dp" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/id_bt_login"
+                android:id="@+id/id_bt_accept_icon"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="8dp"

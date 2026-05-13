@@ -32,9 +32,33 @@
             android:background="@color/white"
             android:padding="16dp">
 
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.Material3.CardView.Outlined"
+                android:layout_width="140dp"
+                android:layout_height="135dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/white"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardCornerRadius="400dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.044"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:strokeColor="#043A61"
+                app:strokeWidth="5dp">
+
+                <ImageView
+                    android:id="@+id/id_img_icon"
+                    android:layout_width="140dp"
+                    android:layout_height="130dp"
+                    app:srcCompat="@mipmap/icono_default"/>
+
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
-                android:id="@+id/id_text_user_name"
+                android:id="@+id/id_text_user_infoName"
                 android:layout_width="155dp"
                 android:layout_height="90dp"
                 android:layout_marginTop="52dp"
@@ -50,32 +74,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/id_btn_menu_exit"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="140dp"
-                android:layout_height="135dp"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="15dp"
-                android:background="@mipmap/logo"
-                android:fontFamily="monospace"
-                android:textAllCaps="true"
-                android:textColor="#1E293B"
-                android:textSize="16dp"
-                app:backgroundTint="@null"
-                app:cornerRadius="100dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:strokeColor="#1E293B"
-                app:strokeWidth="2dp" />
-
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView"
                 style="@style/Widget.Material3.CardView.Outlined"
                 android:layout_width="285dp"
-                android:layout_height="320dp"
+                android:layout_height="310dp"
 
                 android:layout_marginTop="15dp"
                 android:background="@color/white"
@@ -96,121 +99,76 @@
                     android:padding="16dp">
 
                     <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="80dp"
-                        android:layout_height="30dp"
-                        android:text="Usuario:"
-                        android:textAlignment="textStart"
-                        android:textColor="#043A61"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.079"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:layout_editor_absoluteY="16dp" />
-
-                    <TextView
-                        android:id="@+id/id_text_user_infoUsername"
-                        android:layout_width="150dp"
-                        android:layout_height="30dp"
-                        android:text="Carlos95"
-                        android:textAlignment="center"
-                        android:textSize="20sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/textView3"
-                        tools:layout_editor_absoluteY="16dp"
-                        android:textColor="@color/black"/>
-
-                    <TextView
                         android:id="@+id/textView6"
-                        android:layout_width="85dp"
+                        android:layout_width="110dp"
                         android:layout_height="30dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="3dp"
                         android:text="Teléfono:"
-                        android:textSize="20sp"
+                        android:textColor="#043A61"
+                        android:textSize="24sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.083"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView3"
-                        android:textColor="#043A61"/>
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/id_text_user_infoPhone"
-                        android:layout_width="140dp"
+                        android:layout_width="150dp"
                         android:layout_height="30dp"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="52dp"
                         android:text="123456789"
                         android:textAlignment="center"
-                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:textSize="24sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toEndOf="@+id/textView6"
-                        app:layout_constraintTop_toBottomOf="@+id/id_text_user_infoUsername"
-                        android:textColor="@color/black"/>
+                        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
                     <TextView
                         android:id="@+id/textView8"
-                        android:layout_width="65dp"
+                        android:layout_width="80dp"
                         android:layout_height="30dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="45dp"
                         android:text="DNI:"
-                        android:textSize="20sp"
+                        android:textColor="#043A61"
+                        android:textSize="24sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.074"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView6"
-                        android:textColor="#043A61"/>
+                        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
                     <TextView
                         android:id="@+id/id_text_user_infoDni"
                         android:layout_width="160dp"
                         android:layout_height="30dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="44dp"
                         android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/textView8"
-                        app:layout_constraintTop_toBottomOf="@+id/id_text_user_infoPhone"
-                        android:textColor="@color/black"/>
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/id_bt_user_addDni"
-                        android:layout_width="150dp"
-                        android:layout_height="35dp"
-                        android:layout_marginHorizontal="8dp"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="monospace"
-                        android:text="añadir DNI"
-                        android:textAlignment="center"
-                        android:textAllCaps="true"
-                        android:textColor="#FFFFFF"
-                        android:textSize="12sp"
-                        app:backgroundTint="#043A61"
-                        app:cornerRadius="29dp"
-                        app:elevation="5dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/textView8"
-                        app:layout_constraintTop_toBottomOf="@+id/id_text_user_infoPhone" />
+                        app:layout_constraintTop_toBottomOf="@+id/textView8"
+                        tools:text="918273645E" />
 
                     <TextView
                         android:id="@+id/textView11"
-                        android:layout_width="60dp"
+                        android:layout_width="80dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="45dp"
                         android:text="Email:"
-                        android:textSize="20sp"
+                        android:textColor="#043A61"
+                        android:textSize="24sp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.071"
+                        app:layout_constraintHorizontal_bias="0.072"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView8"
-                        android:textColor="#043A61"/>
+                        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
                     <TextView
                         android:id="@+id/id_text_user_infoEmail"
-                        android:layout_width="220dp"
+                        android:layout_width="240dp"
                         android:layout_height="30dp"
                         android:layout_marginTop="5dp"
                         android:text="prueba1@gmail.com"
@@ -228,7 +186,7 @@
                         android:layout_width="180dp"
                         android:layout_height="50dp"
                         android:layout_marginHorizontal="8dp"
-                        android:layout_marginTop="25dp"
+                        android:layout_marginTop="10dp"
                         android:fontFamily="monospace"
                         android:onClick="editarUsuario"
                         android:text="@string/user_btn_edit"
@@ -252,7 +210,7 @@
                 android:layout_width="220dp"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="8dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="monospace"
                 android:onClick="volverMenu"
                 android:text="@string/user_btn_back"
