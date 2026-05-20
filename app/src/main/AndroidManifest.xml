@@ -16,6 +16,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ParkPay">
         <activity
+            android:name=".Info_Parking"
+            android:exported="false" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <activity
+            android:name=".Lista_Parking"
+            android:exported="false" />
+        <activity
             android:name=".Editar_Usuario"
             android:exported="false" />
         <activity

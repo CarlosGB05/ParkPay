@@ -108,6 +108,7 @@
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="monospace"
+                android:onClick="listaParkings"
                 android:text="@string/parking_btn_buscar"
                 android:textAllCaps="true"
                 android:textColor="#1E293B"

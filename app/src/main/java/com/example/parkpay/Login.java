@@ -77,6 +77,8 @@ public class Login extends AppCompatActivity {
 
         if (datoCorreo.equals("prueba") && datoContra.equals("prueba")) {
             Intent intent = new Intent(this, Menu_Inicial.class);
+            Usuario usuario1 = new Usuario("Ejemplo Prueba","prueba",123456789,"123456789E","prueba");
+            intent.putExtra("usuario", usuario1);
             startActivity(intent);
         }
 

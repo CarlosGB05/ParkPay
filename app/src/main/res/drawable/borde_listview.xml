@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- El color de fondo del item (blanco) -->
+    <solid android:color="#FFFFFF" />
+
+    <!-- El borde negro: width es el grosor -->
+    <stroke
+        android:width="2dp"
+        android:color="#000000" />
+
+    <!-- Opcional: redondeado para que se vea más Material -->
+    <corners android:radius="8dp" />
+</shape>

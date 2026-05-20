@@ -14,13 +14,14 @@
     <string name="login_register">Regístrate</string>
 
     <!-- PAG REGISTRO -->
-    <string name="register_title">Regístrate</string>
+    <string name="register_title">REGÍSTRATE</string>
     <string name="register_create">Crear Cuenta</string>
     <string name="register_name">Nombre y Apellido</string>
     <string name="register_dni">DNI</string>
     <string name="register_number">Teléfono</string>
     <string name="register_confPassw">Confirmar Contraseña</string>
     <string name="register_username">Nombre Usuario</string>
+    <string name="register_add">Crear Cuenta</string>
 
     <!-- PAG MENU -->
     <string name="menu_title">Parkay</string>
@@ -42,6 +43,7 @@
 
     <!-- PAG BUSCAR PARKING -->
     <string name="parking_btn_buscar">Buscar Parkings</string>
+    <string name="parking_title_list">Resultados</string>
 
 
 </resources>

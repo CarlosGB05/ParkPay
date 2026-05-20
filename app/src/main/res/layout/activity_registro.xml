@@ -297,7 +297,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
                 android:fontFamily="sans-serif-black"
-                android:text="@string/login_register"
+                android:text="@string/register_title"
+                android:textColor="@color/black"
                 android:textSize="40sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.502"
@@ -327,8 +328,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="monospace"
                     android:inputType="text"
-                    android:textColor="#0F172A"
-                    android:textColorHint="#64748B"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -355,8 +356,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:textColor="#0F172A"
-                    android:textColorHint="#64748B"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textSize="14sp"
                     android:fontFamily="monospace"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -384,8 +385,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="monospace"
                     android:inputType="text"
-                    android:textColor="#0F172A"
-                    android:textColorHint="#64748B"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -411,8 +412,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
-                    android:textColor="#0F172A"
-                    android:textColorHint="#64748B"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textSize="14sp"
                     android:fontFamily="monospace"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -442,8 +443,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="monospace"
                     android:inputType="text"
-                    android:textColor="#0F172A"
-                    android:textColorHint="#64748B"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -471,8 +472,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
-                    android:textColor="#0F172A"
-                    android:textColorHint="#64748B"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textSize="14sp"
                     android:fontFamily="monospace"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -481,13 +482,12 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/id_bt_register_user"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="250dp"
+                android:layout_width="270dp"
                 android:layout_height="56dp"
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="15dp"
-                android:fontFamily="monospace"
                 android:onClick="crearUsuario"
-                android:text="@string/user_update_user"
+                android:text="@string/register_add"
                 android:textAllCaps="true"
                 android:textColor="#1E293B"
                 android:textSize="18sp"
@@ -496,14 +496,18 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/til_confPassw"
                 app:strokeColor="#1E293B"
-                app:strokeWidth="2dp" />
+                app:strokeWidth="2dp"
+                app:icon="@drawable/icon_register"
+                app:iconGravity="textStart"
+                app:iconPadding="8dp"
+                app:iconTint="@color/black"
+                app:iconSize="25dp"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/id_bt_register_canceled"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="8dp"
-                android:fontFamily="monospace"
                 android:onClick="cancelarRegistro"
                 android:text="@string/bt_canceled"
                 android:textAllCaps="true"

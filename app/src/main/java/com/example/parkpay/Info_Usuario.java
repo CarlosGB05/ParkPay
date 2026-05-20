@@ -97,7 +97,7 @@ public class Info_Usuario extends AppCompatActivity {
                     public void onClick(View v2) {
                         UsuarioDAO dao = new UsuarioDAO();
                         if (dao.actualizarIcono(Info_Usuario.this.usuario.getIdUsuario(),"icono_rosa")) {
-                            Info_Usuario.this.imagenIcono.setImageResource(R.mipmap.icono_azul);
+                            Info_Usuario.this.imagenIcono.setImageResource(R.mipmap.icono_rosa);
                             dao.cerrarConexion();
                             dialog.dismiss();
                         }

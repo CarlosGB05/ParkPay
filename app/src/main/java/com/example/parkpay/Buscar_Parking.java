@@ -56,7 +56,8 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
     private PlacesClient placesClient;
     private SeekBar barrita;
     private TextView valorBarrita;
-
+    private LatLng ubicacionIndicado;
+    private int ratioBusqueda;
     private Usuario usuario;
 
     @Override
@@ -79,6 +80,7 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
             private Toast finalB = Toast.makeText(Buscar_Parking.this, "stop",Toast.LENGTH_SHORT);
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                ratioBusqueda = progress;
                 valorBarrita.setText(String.valueOf(progress) + "Km");
             }
 
@@ -97,7 +99,7 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
             }
         });
 
-        // Inicializa Places con la clave de API que creaste en image_641463.png
+        // Inicializa Places con la clave de API
         if (!Places.isInitialized()) {
             Places.initialize(getApplicationContext(), "AIzaSyDW-N6trkPPa5AyHYfSha3s_9OYCXYrtsI");
         }
@@ -141,6 +143,7 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
                 // 4. (Opcional) Ocultar el teclado para ver mejor el mapa
                 autoComplete.dismissDropDown(); // Fuerza el cierre de la lista visualmente
                 autoComplete.clearFocus();      // Quita el cursor del buscador
+
             }
         });
     }
@@ -159,6 +162,7 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
             if (lista != null && !lista.isEmpty()) {
                 Address address = lista.get(0);
                 LatLng ubicacion = new LatLng(address.getLatitude(), address.getLongitude());
+                this.ubicacionIndicado = new LatLng(address.getLatitude(), address.getLongitude());
 
                 // Movemos la cámara al lugar encontrado
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(ubicacion, 15f));
@@ -228,22 +232,30 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
         });
     }
 
-//    private void ocultarTeclado() {
-//        // 1. Obtener el servicio del sistema encargado del teclado
-//        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//
-//        // 2. Obtener la vista que tiene el foco actualmente
-//        View view = this.getCurrentFocus();
-//
-//        // 3. Si hay una vista con el foco, pedir al servicio que oculte el teclado
-//        if (view != null) {
-//            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-//        }
-//    }
+    private void ocultarTeclado() {
+        // 1. Obtener el servicio del sistema encargado del teclado
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        // 2. Obtener la vista que tiene el foco actualmente
+        View view = this.getCurrentFocus();
+
+        // 3. Si hay una vista con el foco, pedir al servicio que oculte el teclado
+        if (view != null) {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
 
     public void volverMenu(View view) {
         Intent intent = new Intent(this, Menu_Inicial.class);
         intent.putExtra("usuario",usuario);
+        startActivity(intent);
+    }
+
+    public void listaParkings(View view) {
+        Intent intent = new Intent(this, Lista_Parking.class);
+        intent.putExtra("usuario",usuario);
+        intent.putExtra("ubicacion", this.ubicacionIndicado);
+        intent.putExtra("ratio", this.ratioBusqueda);
         startActivity(intent);
     }
 
