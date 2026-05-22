@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView"
+        style="@style/Widget.Material3.CardView.Outlined"
+        android:layout_width="340dp"
+        android:layout_height="410dp"
+
+        android:layout_marginTop="15dp"
+        android:background="@color/white"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.48"
+        app:strokeColor="#043A61"
+        app:strokeWidth="5dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:padding="16dp">
+
+            <CalendarView
+                android:id="@+id/id_dialog_calendario"
+                android:layout_width="wrap_content"
+                android:layout_height="300dp"
+                android:layout_marginTop="3dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/id_dialog_calendario">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/id_btn_dialog_calendarAccept"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="130dp"
+                    android:layout_height="55dp"
+                    android:layout_marginHorizontal="3dp"
+                    android:text="Aceptar"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="#1E293B"
+                    android:textSize="16dp"
+                    app:cornerRadius="29dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.493"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="#1E293B"
+                    app:strokeWidth="2dp"
+                    android:onClick="aceptarCalendario"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/id_btn_dialog_calendarCancel"
+                    android:layout_width="140dp"
+                    android:layout_height="50dp"
+                    android:layout_marginHorizontal="8dp"
+                    android:onClick="cancelarCalendario"
+                    android:text="@string/bt_canceled"
+                    android:textAllCaps="true"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    app:backgroundTint="#043A61"
+                    app:cornerRadius="29dp"
+                    app:elevation="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.493"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
+            </LinearLayout>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

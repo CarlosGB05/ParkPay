@@ -1,33 +1,34 @@
 package com.example.parkpay;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CalendarView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import com.android.volley.Request;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.util.ArrayList;
 
 import models.Parking;
+import models.Reserva;
 import models.Usuario;
 
 public class Info_Parking extends AppCompatActivity {
 
     private Usuario usuario;
     private Parking parking;
-    private TextView nombre, direccion, calificacion, Textprecio, error;
+    private ArrayList<Parking> listaParkings;
+    private Reserva reserva;
+    private TextView nombre, ubicacion, calificacion, Textprecio;
+    private AlertDialog dialog;
+    private CalendarView calendario;
+    private String dia, mes, anio, fechaIndicada;
     private double precio;
 
     @Override
@@ -43,16 +44,15 @@ public class Info_Parking extends AppCompatActivity {
 
         this.usuario = (Usuario) getIntent().getSerializableExtra("usuario");
         this.parking = (Parking) getIntent().getSerializableExtra("parking");
+//        this.listaParkings = getIntent().getSerializableExtra("lista");
 
         this.nombre = findViewById(R.id.id_text_parking_nombre);
         this.nombre.setText(this.parking.getNombre());
         this.calificacion = findViewById(R.id.id_text_parking_califi);
         this.calificacion.setText(String.valueOf(this.parking.getCalificacion()));
-        this.direccion = findViewById(R.id.id_text_parking_ubicacion);
-        this.direccion.setText(this.parking.getDireccion());
+        this.ubicacion = findViewById(R.id.id_text_parking_ubicacion);
+        this.ubicacion.setText(this.parking.getDireccion());
         this.Textprecio = findViewById(R.id.id_text_parking_precio);
-        this.error = findViewById(R.id.id_text_parking_error);
-        this.error.setText("");
 
         precioParking();
     }
@@ -85,8 +85,13 @@ public class Info_Parking extends AppCompatActivity {
         }
     }
 
-    public void comprobarPago(View view) {
-        this.error.setText("* Debe indicar una fecha para continuar");
+
+    public void comprobarDatos(View view) {
+        Intent intent = new Intent(this, Pagar_Parking.class);
+        intent.putExtra("usuario", this.usuario);
+        intent.putExtra("parking", this.parking);
+        intent.putExtra("precio", this.precio);
+        startActivity(intent);
     }
 
     public void cancelarPago(View view) {

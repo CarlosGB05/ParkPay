@@ -109,25 +109,17 @@
                 android:padding="16dp"
                 app:layout_constraintTop_toBottomOf="@+id/cardView"
                 tools:layout_editor_absoluteX="16dp"
-                android:layout_marginTop="20dp">
-
-                <Button
-                    android:id="@+id/btnDatePicker"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:icon="@android:drawable/ic_menu_my_calendar"
-                    android:text="Seleccionar Fecha" />
+                android:layout_marginTop="10dp">
 
                 <TextView
-                    android:id="@+id/id_text_parking_error"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="* Debe indicar una fecha para continuar"
+                    android:layout_marginTop="18dp"
+                    android:text="* El precio indicado es €/hora"
                     android:textColor="#E53935"
-                    android:textSize="14sp"
-                    android:visibility="visible" />
+                    android:textSize="16sp"
+                    android:visibility="visible"
+                    android:textAlignment="center" />
 
                 <TextView
                     android:id="@+id/id_text_parking_precio"
@@ -136,39 +128,47 @@
                     android:layout_marginTop="16dp"
                     android:gravity="center_horizontal"
                     android:text="Precio: -- €"
-                    android:textColor="#333333"
-                    android:textSize="20sp"
+                    android:textColor="#FFB300"
+                    android:textSize="24sp"
                     android:textStyle="bold" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnAceptarPago"
+                    android:id="@+id/id_btn_parking_siguientePaso"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="24dp"
-                    android:enabled="false"
-                    android:text="ACEPTAR PAGO"
-                    app:backgroundTint="#103152"
+                    android:onClick="comprobarDatos"
+                    android:text="RESERVAR"
                     android:textColor="@color/white"
+                    android:textSize="16dp"
                     android:textStyle="bold"
-                    app:icon="@drawable/icon_euro"
+                    app:backgroundTint="#103152"
+                    app:cornerRadius="20dp"
+                    app:icon="@drawable/icon_flechaderecha"
                     app:iconGravity="textStart"
                     app:iconPadding="8dp"
-                    app:iconTint="@color/white"
-                    android:onClick="comprobarPago"/>
+                    app:iconSize="30dp"
+                    app:iconTint="@color/white" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnCancelar"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="200dp"
+                    android:layout_width="220dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="8dp"
-                    android:text="Cancelar"
-                    android:layout_marginLeft="45dp"
+                    android:text="Volver Lista"
+                    android:layout_marginLeft="35dp"
                     app:cornerRadius="20dp"
                     app:strokeColor="#1E293B"
                     app:strokeWidth="2dp"
                     android:textColor="@color/black"
-                    android:onClick="cancelarPago"/>
+                    android:onClick="cancelarPago"
+                    app:icon="@drawable/icon_flechaizquierda"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    app:iconSize="26dp"
+                    app:iconTint="@color/black"/>
 
             </LinearLayout>
 

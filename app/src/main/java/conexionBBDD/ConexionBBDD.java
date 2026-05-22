@@ -10,8 +10,8 @@ public class ConexionBBDD {
 
     private Connection conexion = null;
     private static final String driver = "org.postgresql.Driver";
-//    private static final String url = "jdbc:postgresql://10.0.2.2/ParkPay";      // IP Generica
-    private static final String url = "jdbc:postgresql://192.168.2.178:5432/ParkPay";      // IP para el Movil
+    private static final String url = "jdbc:postgresql://10.0.2.2/ParkPay";      // IP Generica
+//    private static final String url = "jdbc:postgresql://192.168.2.178:5432/ParkPay";      // IP para el Movil
     private static final String user = "postgres";
     private static final String password = "1234";
     private Connection connection;

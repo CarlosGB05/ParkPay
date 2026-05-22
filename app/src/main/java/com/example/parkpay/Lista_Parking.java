@@ -76,6 +76,7 @@ public class Lista_Parking extends AppCompatActivity {
                 Intent intent = new Intent(Lista_Parking.this, Info_Parking.class);
                 intent.putExtra("usuario", Lista_Parking.this.usuario);
                 intent.putExtra("parking", p);
+                intent.putExtra("lista",Lista_Parking.this.listaParkings);
                 startActivity(intent);
             }
         });
