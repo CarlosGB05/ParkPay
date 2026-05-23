@@ -55,7 +55,8 @@
                     android:layout_height="wrap_content"
                     android:text="* Debe indicar un horario para continuar"
                     android:textAlignment="center"
-                    android:textColor="#E53935"
+                    android:textColor="#FFB300"
+                    android:textStyle="bold"
                     android:textSize="14sp"
                     android:visibility="visible"
                     app:layout_constraintTop_toBottomOf="@+id/card_inicio"
@@ -97,7 +98,7 @@
                         android:layout_marginBottom="8dp"
                         android:gravity="center"
                         android:text="-- / -- / ----"
-                        android:textColor="#666666"
+                        android:textColor="#FFB300"
                         android:textSize="14sp" />
 
                     <ListView
@@ -105,7 +106,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="280dp"
                         android:divider="#DDDDDD"
-                        android:dividerHeight="1dp" />
+                        android:dividerHeight="1dp"
+                        android:textAlignment="center"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -143,7 +145,7 @@
                         android:layout_marginBottom="8dp"
                         android:gravity="center"
                         android:text="-- / -- / ----"
-                        android:textColor="#666666"
+                        android:textColor="#FFB300"
                         android:textSize="14sp" />
 
                     <ListView
@@ -151,12 +153,13 @@
                         android:layout_width="match_parent"
                         android:layout_height="280dp"
                         android:divider="#DDDDDD"
-                        android:dividerHeight="1dp" />
+                        android:dividerHeight="1dp"
+                        android:textAlignment="center"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
             <TextView
-                android:id="@+id/id_text_calendario_error"
+                android:id="@+id/id_text_calendario_error2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -172,15 +175,16 @@
                 android:id="@+id/btn_confirmar"
                 android:layout_width="0dp"
                 android:layout_height="55dp"
+                android:layout_marginTop="10dp"
                 android:backgroundTint="#0C385A"
+                android:onClick="confirmarHorarios"
                 android:text="CONFIRMAR HORARIO"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/id_text_calendario_error"
-                android:layout_marginTop="10dp"/>
+                app:layout_constraintTop_toBottomOf="@+id/id_text_calendario_error2" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/id_btn_parking_volver"

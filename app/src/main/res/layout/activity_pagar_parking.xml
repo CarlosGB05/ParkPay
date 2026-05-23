@@ -84,12 +84,12 @@
                     android:icon="@android:drawable/ic_menu_my_calendar"
                     android:onClick="indicarFechas"
                     android:text="Seleccionar Horario"
-                    android:layout_marginTop="12dp" />
+                    android:layout_marginTop="24dp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_name"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    android:layout_height="55dp"
                     android:hint="Matrícula del Coche"
                     app:boxBackgroundMode="outline"
                     app:boxCornerRadiusBottomEnd="16dp"
@@ -101,7 +101,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView"
-                    android:layout_marginTop="12dp">
+                    android:layout_marginTop="14dp">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_text_parking_matricula"
@@ -145,7 +145,7 @@
                     android:id="@+id/id_text_parking_precioTotal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="13dp"
+                    android:layout_marginTop="16dp"
                     android:gravity="center_horizontal"
                     android:text="Precio Total: -- €"
                     android:textColor="#FFB300"
@@ -156,7 +156,7 @@
                     android:id="@+id/id_text_parking_error"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="15dp"
                     android:text="* Debe indicar un horario para continuar"
                     android:textAlignment="center"
                     android:textColor="#E53935"
@@ -167,12 +167,12 @@
                     android:id="@+id/id_btn_parking_aceptarPago"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="10dp"
-                    android:enabled="false"
+                    android:layout_marginTop="6dp"
+                    android:onClick="pagarParking"
                     android:text="ACEPTAR PAGO"
-                    app:backgroundTint="#103152"
                     android:textColor="@color/white"
                     android:textStyle="bold"
+                    app:backgroundTint="#103152"
                     app:icon="@drawable/icon_euro"
                     app:iconGravity="textStart"
                     app:iconPadding="8dp"
@@ -185,6 +185,7 @@
                     android:layout_height="50dp"
                     android:layout_marginLeft="45dp"
                     android:layout_marginTop="8dp"
+                    android:onClick="cancelarPago"
                     android:text="Cancelar"
                     android:textColor="@color/black"
                     app:cornerRadius="20dp"

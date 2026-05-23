@@ -23,12 +23,7 @@ public class Info_Parking extends AppCompatActivity {
 
     private Usuario usuario;
     private Parking parking;
-    private ArrayList<Parking> listaParkings;
-    private Reserva reserva;
     private TextView nombre, ubicacion, calificacion, Textprecio;
-    private AlertDialog dialog;
-    private CalendarView calendario;
-    private String dia, mes, anio, fechaIndicada;
     private double precio;
 
     @Override

@@ -22,6 +22,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import models.Parking;
@@ -35,9 +36,11 @@ public class Reservar_Calendario extends AppCompatActivity {
     private String[] listaHoras;
     private double precio;
     private CalendarView calendario;
-    private Button btCalendario, aceptar, cancelar;
+    private Button aceptar, cancelar;
     private AlertDialog dialog;
-    private String dia, mes, anio, fechaIndicada;
+    private String dia, mes, anio, fechaIndicada, fechaInicio, fechaFinal;
+    private LocalDate fechaActual, fechaSeleccionada;
+    private int posicionInicio, posicionFinal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,12 +63,18 @@ public class Reservar_Calendario extends AppCompatActivity {
         this.horaFinal = findViewById(R.id.id_text_calendario_fechaFinal);
         this.listaInicio = findViewById(R.id.id_text_calendario_ListviewInicio);
         this.listaFinal = findViewById(R.id.id_text_calendario_ListviewFinal);
-        this.error = findViewById(R.id.id_text_calendario_error);
+        this.error = findViewById(R.id.id_text_calendario_error2);
         this.error.setText("");
         this.dia = "";
         this.mes = "";
         this.anio = "";
         this.fechaIndicada = "";
+        this.fechaInicio = "";
+        this.fechaFinal = "";
+        this.fechaActual = LocalDate.now();
+        this.fechaSeleccionada = null;
+        this.posicionInicio = -1;
+        this.posicionFinal = -1;
 
         this.listaHoras = new String[]{"00:00","01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00",
                 "13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"};
@@ -78,6 +87,9 @@ public class Reservar_Calendario extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Reservar_Calendario.this.horaInicio.setText(Reservar_Calendario.this.listaHoras[position]);
+                Reservar_Calendario.this.fechaInicio = Reservar_Calendario.this.listaHoras[position].toString();
+                Reservar_Calendario.this.posicionInicio = position;
+
             }
         });
 
@@ -85,12 +97,48 @@ public class Reservar_Calendario extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Reservar_Calendario.this.horaFinal.setText(Reservar_Calendario.this.listaHoras[position]);
+                Reservar_Calendario.this.fechaFinal = Reservar_Calendario.this.listaHoras[position].toString();
+                Reservar_Calendario.this.posicionFinal = position;
             }
         });
     }
 
+    public void confirmarHorarios(View view) {
+        if (this.fechaIndicada.isEmpty() && this.fechaInicio.isEmpty() && this.fechaFinal.isEmpty()) {
+            this.error.setText("Indica el dia y las fechas");
+            return;
+        }
+
+        if (this.fechaIndicada.isEmpty()) {
+            this.error.setText("Selecciona el dia de la reserva");
+            return;
+        }
+
+        if (this.fechaInicio.isEmpty() || this.fechaFinal.isEmpty()) {
+            this.error.setText("Selecciona las fechas de las reservas");
+            return;
+        }
+
+        if ((this.posicionFinal <= this.posicionInicio) || (this.posicionInicio == -1 && this.posicionFinal == -1)) {
+            Toast.makeText(this, "La hora FINAL debe ser superior a la INICIAL", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        double precioTotal = (this.posicionFinal - this.posicionInicio) * this.precio;
+
+        Intent intent = new Intent(this, Pagar_Parking.class);
+        intent.putExtra("usuario", this.usuario);
+        intent.putExtra("parking", this.parking);
+        intent.putExtra("precio", this.precio);
+        intent.putExtra("fechaIndicada", this.fechaIndicada);
+        intent.putExtra("horaInicial", this.fechaInicio);
+        intent.putExtra("horaFinal", this.fechaFinal);
+        intent.putExtra("precioTotal", precioTotal);
+        startActivity(intent);
+    }
+
     public void cancelarFechas(View view) {
-        Intent intent = new Intent(this, Reservar_Calendario.class);
+        Intent intent = new Intent(this, Pagar_Parking.class);
         intent.putExtra("usuario", this.usuario);
         intent.putExtra("parking", this.parking);
         intent.putExtra("precio", this.precio);
@@ -129,6 +177,7 @@ public class Reservar_Calendario extends AppCompatActivity {
                 Reservar_Calendario.this.dia = String.valueOf(dayOfMonth);
                 Reservar_Calendario.this.mes = String.valueOf((month + 1));
                 Reservar_Calendario.this.anio = String.valueOf(year);
+                Reservar_Calendario.this.fechaSeleccionada = LocalDate.of(year, month + 1, dayOfMonth);
             }
         });
     }
@@ -139,6 +188,12 @@ public class Reservar_Calendario extends AppCompatActivity {
             Toast.makeText(this, "Selecciona una fecha", Toast.LENGTH_LONG).show();
             return;
         }
+
+        if (fechaSeleccionada.isBefore(fechaActual)) {
+            Toast.makeText(Reservar_Calendario.this, "La fecha debe ser IGUAL o SUPERIOR al actual", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         this.fechaIndicada = this.dia + " / " + this.mes + " / " + this.anio;
         fecha = "Fecha indicada:   " + this.dia + " / " + this.mes + " / " + this.anio;
         this.fecha.setText(fecha);

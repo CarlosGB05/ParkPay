@@ -22,6 +22,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import dao.ReservaDAO;
 import models.Parking;
 import models.Reserva;
 import models.Usuario;
@@ -31,11 +32,14 @@ public class Pagar_Parking extends AppCompatActivity {
     private Usuario usuario;
     private Parking parking;
     private Reserva reserva;
-    private TextView nombre, calificacion, Textprecio, error;
+    private ReservaDAO dao;
+    private TextView nombre, calificacion, textPrecio, error;
     private EditText matricula;
     private Switch cocheElectrico;
-    private String fechaIndicada, valorSwitch;
+    private String fechaIndicada, fechaInicio, fechaFinal;
     private double precio, precioTotal;
+    private boolean valorSwitch;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,26 +55,33 @@ public class Pagar_Parking extends AppCompatActivity {
         this.usuario = (Usuario) getIntent().getSerializableExtra("usuario");
         this.parking = (Parking) getIntent().getSerializableExtra("parking");
         this.precio = getIntent().getDoubleExtra("precio",0);
+        this.precioTotal = getIntent().getDoubleExtra("precioTotal",0);
+
+        this.fechaIndicada = getIntent().getStringExtra("fechaIndicada");
+        this.fechaInicio = getIntent().getStringExtra("horaInicial");
+        this.fechaFinal = getIntent().getStringExtra("horaFinal");
 
         this.nombre = findViewById(R.id.id_text_parking_nombre2);
         this.nombre.setText(this.parking.getNombre());
         this.matricula = findViewById(R.id.id_text_parking_matricula);
         this.cocheElectrico = findViewById(R.id.id_switch_parking_vehiculo);
-        this.Textprecio = findViewById(R.id.id_text_parking_precioTotal);
+        this.textPrecio = findViewById(R.id.id_text_parking_precioTotal);
         this.error = findViewById(R.id.id_text_parking_error);
         this.error.setText("");
-        this.fechaIndicada = "";
+
 
         this.cocheElectrico.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    Pagar_Parking.this.error.setText("Es electrico");
+                    Pagar_Parking.this.valorSwitch = true;
                 } else {
-                    Pagar_Parking.this.error.setText("No es electrico");
+                    Pagar_Parking.this.valorSwitch = false;
                 }
             }
         });
+
+        calcularPrecio();
 
     }
 
@@ -79,6 +90,48 @@ public class Pagar_Parking extends AppCompatActivity {
         intent.putExtra("usuario", this.usuario);
         intent.putExtra("parking", this.parking);
         intent.putExtra("precio", this.precio);
+        startActivity(intent);
+    }
+
+    public void calcularPrecio() {
+        if (this.fechaIndicada == null) {
+            return;
+        }
+
+        if (this.matricula.getText() == null) {
+            this.error.setText("Matrícula no indicada");
+            return;
+        }
+
+        this.textPrecio.setText("Precio Total: " + this.precioTotal +"€");
+    }
+
+    public void pagarParking(View view) {
+        if (this.fechaIndicada == null) {
+            this.error.setText("Horario no indicado");
+            return;
+        }
+
+        if (this.matricula.getText().toString().isEmpty()) {
+            this.error.setText("Matrícula no indicada");
+            return;
+        }
+
+        this.reserva = new Reserva(this.usuario.getIdUsuario(), this.parking.getNombre(),this.parking.getDireccion(),
+                this.parking.getCalificacion(),this.fechaIndicada,this.fechaInicio,this.fechaFinal,this.precioTotal,
+                this.matricula.getText().toString(),this.valorSwitch);
+
+        if (this.dao.insertarReserva(this.reserva)) {
+            Toast.makeText(this,"Reserva insertado BBDD", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, Buscar_Parking.class);
+            intent.putExtra("usuario", this.usuario);
+            startActivity(intent);
+        }
+    }
+
+    public void cancelarPago(View view) {
+        Intent intent = new Intent(this, Buscar_Parking.class);
+        intent.putExtra("usuario", this.usuario);
         startActivity(intent);
     }
 

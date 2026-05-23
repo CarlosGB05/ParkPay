@@ -9,11 +9,10 @@ public class Reserva {
     private double calificacionParking, precioTotal;
     private boolean cocheElectrico;
 
-    // Reserva completa
-    public Reserva(int idReserva, int idUsuario, String nombreParking, String ubicacionParking,
+    // Constructor para crear Reserva
+    public Reserva(int idUsuario, String nombreParking, String ubicacionParking,
                    double calificacionParking,  String fechaReserva, String inicioReserva, String finReserva,
                    double precioTotal, String matricula, boolean cocheElectrico) {
-        this.idReserva = idReserva;
         this.idUsuario = idUsuario;
         this.nombreParking = nombreParking;
         this.ubicacionParking = ubicacionParking;
@@ -26,16 +25,21 @@ public class Reserva {
         this.cocheElectrico = cocheElectrico;
     }
 
-    // Reserva creado al ver la informacion del parking
-    public Reserva(int idUsuario, String nombreParking, String ubicacionParking, String fechaReserva,
-                   double calificacionParking, String finReserva, String inicioReserva) {
+    // Contructor con todos los parámetros
+    public Reserva(int idReserva, int idUsuario, String nombreParking, String ubicacionParking,
+                   String matricula, String fechaReserva, String inicioReserva, String finReserva,
+                   double calificacionParking, double precioTotal, boolean cocheElectrico) {
+        this.idReserva = idReserva;
         this.idUsuario = idUsuario;
         this.nombreParking = nombreParking;
         this.ubicacionParking = ubicacionParking;
+        this.matricula = matricula;
         this.fechaReserva = fechaReserva;
-        this.calificacionParking = calificacionParking;
-        this.finReserva = finReserva;
         this.inicioReserva = inicioReserva;
+        this.finReserva = finReserva;
+        this.calificacionParking = calificacionParking;
+        this.precioTotal = precioTotal;
+        this.cocheElectrico = cocheElectrico;
     }
 
     public int getIdReserva() {
