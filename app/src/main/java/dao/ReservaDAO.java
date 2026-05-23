@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import conexionBBDD.ConexionBBDD;
+import models.Parking;
 import models.Reserva;
 import models.Usuario;
 
@@ -51,5 +53,54 @@ public class ReservaDAO {
             }
         }
         return false;
+    }
+
+    public ArrayList<Reserva> buscarReservas(int id){
+        ArrayList<Reserva> lista = new ArrayList<>();
+        String queryInsert = "Select * From reservas where idUsuario_Fk = ?;";
+        try {
+            this.sentenciaPara = connection.prepareStatement(queryInsert);
+            this.sentenciaPara.setInt(1, id);
+
+            this.result = this.sentenciaPara.executeQuery();
+            while(this.result.next()){
+                Reserva reserva = new Reserva(
+                        this.result.getInt("idReserva"),
+                        this.result.getInt("idUsuario_Fk"),
+                        this.result.getString("nombre"),
+                        this.result.getString("ubicacion"),
+                        this.result.getString("matricula"),
+                        this.result.getString("fechaReserva"),
+                        this.result.getString("inicioReserva"),
+                        this.result.getString("finalReserva"),
+                        this.result.getDouble("calificacion"),
+                        this.result.getDouble("precioTotal"),
+                        this.result.getBoolean("cocheElectrico"));
+                lista.add(reserva);
+            }
+
+            return lista;
+
+        } catch (SQLException e) {
+            System.out.println("Error al buscar en tabla Usuarios");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void cerrarConexion() {
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Connection getConexion() {
+        return connection;
+    }
+
+    public void setConnection (Connection conc) {
+        connection = conc;
     }
 }

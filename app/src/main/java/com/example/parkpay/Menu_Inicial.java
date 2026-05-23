@@ -71,7 +71,7 @@ public class Menu_Inicial extends AppCompatActivity {
     }
 
     public void listaReservas(View view) {
-        Intent intent = new Intent(this, Practicar_APIs.class);
+        Intent intent = new Intent(this, Lista_Reservas.class);
         intent.putExtra("usuario",usuario);
         startActivity(intent);
     }

@@ -106,6 +106,24 @@ public class Pagar_Parking extends AppCompatActivity {
         this.textPrecio.setText("Precio Total: " + this.precioTotal +"€");
     }
 
+    public boolean validarMatricula(String matricula) {
+        if (matricula == null) {
+            return false;
+        }
+
+        String textoLimpio = matricula.replace("-", "").replace(" ", "").toUpperCase().trim();
+
+        // 2. Expresión regular para el formato moderno (4 números y 3 letras válidas)
+        // Excluye vocales, Ñ y Q.
+        String regexModerna = "^[0-9]{4}[BCDFGHJKLMNPQRSTVWXYZ]{3}$";
+
+        // 3. Expresión regular para el formato antiguo provincial (Ej: M1234AB, TO5555X)
+        // 1 o 2 letras de provincia + 4 números + 1 o 2 letras de serie (sin Ñ, Q ni las últimas vocales en algunas series, pero más flexible)
+        String regexAntigua = "^[A-Z]{1,2}[0-9]{4}[A-Z]{1,2}$";
+
+        return textoLimpio.matches(regexModerna) || textoLimpio.matches(regexAntigua);
+    }
+
     public void pagarParking(View view) {
         if (this.fechaIndicada == null) {
             this.error.setText("Horario no indicado");
@@ -117,11 +135,16 @@ public class Pagar_Parking extends AppCompatActivity {
             return;
         }
 
+        if (validarMatricula(this.matricula.getText().toString())) {
+            Toast.makeText(this, "Matrícula válida", Toast.LENGTH_SHORT).show();
+        }
+
         this.reserva = new Reserva(this.usuario.getIdUsuario(), this.parking.getNombre(),this.parking.getDireccion(),
                 this.parking.getCalificacion(),this.fechaIndicada,this.fechaInicio,this.fechaFinal,this.precioTotal,
                 this.matricula.getText().toString(),this.valorSwitch);
-
+        this.dao = new ReservaDAO();
         if (this.dao.insertarReserva(this.reserva)) {
+            this.dao.cerrarConexion();
             Toast.makeText(this,"Reserva insertado BBDD", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(this, Buscar_Parking.class);
             intent.putExtra("usuario", this.usuario);

@@ -108,10 +108,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="monospace"
-                        android:inputType="text"
+                        android:inputType="textCapCharacters"
                         android:textColor="#0F172A"
                         android:textColorHint="#64748B"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:digits="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz- "/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout

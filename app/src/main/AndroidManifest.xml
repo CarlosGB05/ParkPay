@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ParkPay">
         <activity
+            android:name=".Lista_Reservas"
+            android:exported="false" />
+        <activity
             android:name=".Reservar_Calendario"
             android:exported="false" />
         <activity

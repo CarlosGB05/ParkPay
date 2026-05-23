@@ -70,6 +70,7 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
         mapFragment.getMapAsync(this);
 
         this.usuario = (Usuario) getIntent().getSerializableExtra("usuario");
+
         this.barrita = findViewById(R.id.id_seekBar);
         this.valorBarrita = findViewById(R.id.id_text_valor_seekbar);
         this.valorBarrita.setText("0Km");
