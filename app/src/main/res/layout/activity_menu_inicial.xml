@@ -101,7 +101,7 @@
                 app:backgroundTint="#043A61"
                 app:cornerRadius="29dp"
                 app:elevation="5dp"
-                app:icon="@drawable/icon_parking"
+                app:icon="@drawable/icon_localizacion"
                 app:iconSize="30dp"
                 app:iconTint="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"

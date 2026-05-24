@@ -40,6 +40,7 @@ import com.google.android.libraries.places.api.model.AutocompletePrediction;
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken;
 import com.google.android.libraries.places.api.net.FindAutocompletePredictionsRequest;
 import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.material.slider.Slider;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 
 import java.io.IOException;
@@ -55,6 +56,7 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
     private AutoCompleteTextView autoComplete;
     private PlacesClient placesClient;
     private SeekBar barrita;
+    private Slider barrita2;
     private TextView valorBarrita;
     private LatLng ubicacionIndicado;
     private int ratioBusqueda;
@@ -71,32 +73,30 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
 
         this.usuario = (Usuario) getIntent().getSerializableExtra("usuario");
 
-        this.barrita = findViewById(R.id.id_seekBar);
+//        this.barrita = findViewById(R.id.id_seekBar);
+        this.barrita2 = findViewById(R.id.id_seekBar);
         this.valorBarrita = findViewById(R.id.id_text_valor_seekbar);
         this.valorBarrita.setText("0Km");
 
-        this.barrita.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//        this.barrita.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+//            @Override
+//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+//                ratioBusqueda = progress;
+//                valorBarrita.setText(String.valueOf(progress) + "Km");
+//            }
+//
+//            @Override
+//            public void onStartTrackingTouch(SeekBar seekBar) {}
+//
+//            @Override
+//            public void onStopTrackingTouch(SeekBar seekBar) {}
+//        });
 
-            private Toast inicio = Toast.makeText(Buscar_Parking.this,"start",Toast.LENGTH_SHORT);
-            private Toast finalB = Toast.makeText(Buscar_Parking.this, "stop",Toast.LENGTH_SHORT);
+        this.barrita2.addOnChangeListener(new Slider.OnChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                ratioBusqueda = progress;
-                valorBarrita.setText(String.valueOf(progress) + "Km");
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                finalB.cancel();
-                inicio.setGravity(Gravity.TOP|Gravity.LEFT, 60,110);
-                inicio.show();
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                inicio.cancel();
-                finalB.setGravity(Gravity.TOP|Gravity.RIGHT, 60,110);
-                finalB.show();
+            public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
+                ratioBusqueda = (int) value;
+                valorBarrita.setText(String.valueOf((int) value) + "Km");
             }
         });
 
@@ -253,6 +253,11 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
     }
 
     public void listaParkings(View view) {
+        if (this.ubicacionIndicado == null) {
+            Toast.makeText(this, "Indica el lugar a buscar", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         Intent intent = new Intent(this, Lista_Parking.class);
         intent.putExtra("usuario",usuario);
         intent.putExtra("ubicacion", this.ubicacionIndicado);

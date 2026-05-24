@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -49,6 +50,7 @@ public class Lista_Parking extends AppCompatActivity {
     private PlacesClient placesClient;
     private ArrayList<Parking> listaParkings;
     private ListView lista;
+    private TextView error;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,8 @@ public class Lista_Parking extends AppCompatActivity {
         this.ubicacion = getIntent().getParcelableExtra("ubicacion");
         this.ratio = getIntent().getIntExtra("ratio",0);
         this.lista = findViewById(R.id.idLista);
+        this.error = findViewById(R.id.id_listview_error2);
+        this.error.setText("");
 
         if (this.ubicacion != null) {
             buscarParkingsConVolley(this.ubicacion, this.ratio);
@@ -132,6 +136,10 @@ public class Lista_Parking extends AppCompatActivity {
                         }
 
                         // ¡IMPORTANTE! Aquí es donde notificas a tu ListView que ya tiene datos
+                        if (this.listaParkings.isEmpty()) {
+                            this.error.setText("No se encontraron ningún Parking por esa zona");
+                            return;
+                        }
                         AdapterPersonalizado adapter = new AdapterPersonalizado(this,this.listaParkings);
                         lista.setAdapter(adapter);
 

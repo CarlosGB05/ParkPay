@@ -144,10 +144,12 @@ public class Pagar_Parking extends AppCompatActivity {
                 this.matricula.getText().toString(),this.valorSwitch);
         this.dao = new ReservaDAO();
         if (this.dao.insertarReserva(this.reserva)) {
+            this.reserva = this.dao.buscarReserva(this.usuario.getIdUsuario(), this.reserva.getFechaReserva(),
+                    this.reserva.getInicioReserva(), this.reserva.getFinReserva());
             this.dao.cerrarConexion();
-            Toast.makeText(this,"Reserva insertado BBDD", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this, Buscar_Parking.class);
+            Intent intent = new Intent(this, Finalizar_Reserva.class);
             intent.putExtra("usuario", this.usuario);
+            intent.putExtra("reserva", this.reserva);
             startActivity(intent);
         }
     }

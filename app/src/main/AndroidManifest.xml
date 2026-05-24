@@ -16,6 +16,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ParkPay">
         <activity
+            android:name=".Info_Reserva"
+            android:exported="false" />
+        <activity
+            android:name=".Finalizar_Reserva"
+            android:exported="false" />
+        <activity
             android:name=".Lista_Reservas"
             android:exported="false" />
         <activity

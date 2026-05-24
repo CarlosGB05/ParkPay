@@ -1,8 +1,9 @@
 package models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Reserva {
+public class Reserva implements Serializable {
 
     private int idReserva, idUsuario;
     private String nombreParking, ubicacionParking, matricula, fechaReserva, inicioReserva, finReserva;

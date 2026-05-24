@@ -3,7 +3,9 @@ package com.example.parkpay;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -24,6 +26,7 @@ public class Lista_Reservas extends AppCompatActivity {
     private Usuario usuario;
     private ReservaDAO dao;
     private ListView lista;
+    private TextView error;
     private ArrayList<Reserva> listaReservas;
 
     @Override
@@ -40,12 +43,25 @@ public class Lista_Reservas extends AppCompatActivity {
         this.usuario = (Usuario) getIntent().getSerializableExtra("usuario");
 
         this.lista = findViewById(R.id.id_listview_reservas);
+        this.error = findViewById(R.id.id_listview_error);
+        this.error.setText("");
 
         this.dao = new ReservaDAO();
-        this.listaReservas = this.dao.buscarReservas(this.usuario.getIdUsuario());
+        this.listaReservas = this.dao.buscarListaReservas(this.usuario.getIdUsuario());
         this.dao.cerrarConexion();
 
         cargarLista();
+
+        this.lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Reserva r = Lista_Reservas.this.listaReservas.get(position);
+                Intent intent = new Intent(Lista_Reservas.this, Info_Reserva.class);
+                intent.putExtra("usuario", Lista_Reservas.this.usuario);
+                intent.putExtra("reserva", r);
+                startActivity(intent);
+            }
+        });
     }
 
     public void volverMenuInicial(View view) {
@@ -56,10 +72,7 @@ public class Lista_Reservas extends AppCompatActivity {
 
     public void cargarLista() {
         if (this.listaReservas.isEmpty()) {
-            Toast.makeText(this, "No hay ninguna reserva", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(this, Menu_Inicial.class);
-            intent.putExtra("usuario",usuario);
-            startActivity(intent);
+            this.error.setText("No tienes ninguna reserva realizada");
         }
 
         AdapPerso_Reservas adapter = new AdapPerso_Reservas(this,this.listaReservas);

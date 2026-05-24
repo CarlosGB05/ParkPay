@@ -59,4 +59,6 @@ dependencies {
     implementation("com.google.android.libraries.places:places:3.3.0")
 
     implementation("com.android.volley:volley:1.2.1")
+    // Generador de códigos QR
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
 }

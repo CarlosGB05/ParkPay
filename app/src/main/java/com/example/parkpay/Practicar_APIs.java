@@ -1,8 +1,11 @@
 package com.example.parkpay;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -11,10 +14,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import dao.ReservaDAO;
 import models.Parking;
+import models.Reserva;
 import models.Usuario;
 
 public class Practicar_APIs extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,4 +34,5 @@ public class Practicar_APIs extends AppCompatActivity {
         });
 
     }
+
 }

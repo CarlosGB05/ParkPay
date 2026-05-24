@@ -71,6 +71,21 @@
                     android:padding="16dp"
                     android:background="@drawable/borde_listview">
 
+                    <TextView
+                        android:id="@+id/id_listview_error2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="13dp"
+                        android:fontFamily="sans-serif-black"
+                        android:text="No tienes ninguna reserva realizada"
+                        android:textAlignment="center"
+                        android:textColor="#E53935"
+                        android:textSize="24dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.502"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
                     <ListView
                         android:id="@+id/idLista"
                         android:layout_width="310dp"

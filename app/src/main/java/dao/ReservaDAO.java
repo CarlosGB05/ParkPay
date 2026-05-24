@@ -55,7 +55,7 @@ public class ReservaDAO {
         return false;
     }
 
-    public ArrayList<Reserva> buscarReservas(int id){
+    public ArrayList<Reserva> buscarListaReservas(int id){
         ArrayList<Reserva> lista = new ArrayList<>();
         String queryInsert = "Select * From reservas where idUsuario_Fk = ?;";
         try {
@@ -80,6 +80,84 @@ public class ReservaDAO {
             }
 
             return lista;
+
+        } catch (SQLException e) {
+            System.out.println("Error al buscar en tabla Usuarios");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public Reserva buscarReserva(int id, String fecha, String inicio, String fin){
+        Reserva reserva = null;
+        String queryInsert = "Select * From reservas where idUsuario_Fk = ? and fechaReserva = ?" +
+                " and inicioReserva = ? and finalReserva = ?;";
+        try {
+            this.sentenciaPara = connection.prepareStatement(queryInsert);
+            this.sentenciaPara.setInt(1, id);
+            this.sentenciaPara.setString(2, fecha);
+            this.sentenciaPara.setString(3, inicio);
+            this.sentenciaPara.setString(4, fin);
+
+            this.result = this.sentenciaPara.executeQuery();
+            while(this.result.next()){
+                reserva = new Reserva(
+                        this.result.getInt("idReserva"),
+                        this.result.getInt("idUsuario_Fk"),
+                        this.result.getString("nombre"),
+                        this.result.getString("ubicacion"),
+                        this.result.getString("matricula"),
+                        this.result.getString("fechaReserva"),
+                        this.result.getString("inicioReserva"),
+                        this.result.getString("finalReserva"),
+                        this.result.getDouble("calificacion"),
+                        this.result.getDouble("precioTotal"),
+                        this.result.getBoolean("cocheElectrico"));
+            }
+
+            return reserva;
+
+        } catch (SQLException e) {
+            System.out.println("Error al buscar en tabla Reservas");
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public boolean insertarCodigoQR(int id, byte[] codigo){
+        String queryInsert = "INSERT INTO codigos_qr "
+                + "(idReserva_FK, imagen) values (?,?);";
+        try {
+            this.sentenciaPara = connection.prepareStatement(queryInsert);
+            this.sentenciaPara.setInt(1, id);
+            this.sentenciaPara.setBytes(2, codigo);
+
+            this.sentenciaPara.executeUpdate();
+            System.out.println("Codigo QR insertado correctamente");
+            return true;
+
+        } catch (SQLException e) {
+            System.out.println("Error al insertar el codigo QR");
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public byte[] buscarCodigoQR(int id){
+        byte[] img = null;
+        String queryInsert = "Select * From codigos_qr where idReserva_FK = ?;";
+        try {
+            this.sentenciaPara = connection.prepareStatement(queryInsert);
+            this.sentenciaPara.setInt(1, id);
+
+            this.result = this.sentenciaPara.executeQuery();
+            while(this.result.next()){
+                img = this.result.getBytes("imagen");
+                return img;
+            }
+
+            return null;
 
         } catch (SQLException e) {
             System.out.println("Error al buscar en tabla Usuarios");
