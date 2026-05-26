@@ -78,6 +78,30 @@ public class UsuarioDAO {
         return null;
     }
 
+    public boolean comprobarEmail(String email) {
+        if(email != null){
+            String queryInsert = "Select count(*) as total from usuarios where email = ?;";
+            try {
+                this.sentenciaPara = connection.prepareStatement(queryInsert);
+                this.sentenciaPara.setString(1, email);
+
+                this.result = this.sentenciaPara.executeQuery();
+                if (this.result.next()) {
+                    int total = this.result.getInt("total");
+                    return total > 0;
+                }
+
+            } catch (SQLException e) {
+                System.out.println("Error al actualizar el Usuarios");
+                e.printStackTrace();
+            }
+        }
+        else {
+            return false;
+        }
+        return false;
+    }
+
     public boolean actualizarUsuario(Usuario usuario){
         if(usuario != null){
             String queryInsert = "Update usuarios set nombreCompleto = ?," +

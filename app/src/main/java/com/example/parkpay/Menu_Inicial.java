@@ -12,15 +12,17 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.card.MaterialCardView;
+
 import dao.UsuarioDAO;
 import models.Usuario;
 
 public class Menu_Inicial extends AppCompatActivity {
 
-    private TextView text_name;
     private ImageView iconUser;
     private Usuario usuario;
     private UsuarioDAO dao;
+    private MaterialCardView parking, reservas, info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +35,13 @@ public class Menu_Inicial extends AppCompatActivity {
             return insets;
         });
 
-        this.text_name = findViewById(R.id.id_text_name_menu);
-        this.iconUser = findViewById(R.id.id_icon_menu);
         this.usuario = (Usuario) getIntent().getSerializableExtra("usuario");
-        this.text_name.setText(this.usuario.getNombreCompleto());
+
+        this.iconUser = findViewById(R.id.id_icon_menu);
+        this.parking = findViewById(R.id.id_btn_menu_parking);
+        this.reservas = findViewById(R.id.id_btn_menu_reserv);
+        this.info = findViewById(R.id.id_btn_menu_account);
+
         cargarIcono();
     }
 

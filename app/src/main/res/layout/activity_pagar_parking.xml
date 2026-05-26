@@ -133,12 +133,22 @@
                         android:layout_marginTop="7dp"
                         android:layout_marginLeft="20dp"/>
 
-                    <Switch
+<!--                    <Switch-->
+<!--                        android:id="@+id/id_switch_parking_vehiculo"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:layout_marginRight="40dp"/>-->
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
                         android:id="@+id/id_switch_parking_vehiculo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="8dp"
                         android:layout_marginTop="5dp"
-                        android:layout_marginRight="40dp"/>
+                        android:layout_marginRight="50dp"
+                        app:thumbTint="@color/black"
+                        app:trackTint="@color/white"
+                        app:trackDecorationTint="@null"/>
 
                 </LinearLayout>
 

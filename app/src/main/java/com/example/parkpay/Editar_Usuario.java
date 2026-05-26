@@ -76,9 +76,11 @@ public class Editar_Usuario extends AppCompatActivity {
         String infoNameLongitud = "Máx 20 caracteres";
         String infoTelefLongitud = "Máx 9 Números";
         String infoPasswIncorrect = "No coinciden";
+        String infoIncorrectDNI = "DNI no valido";
+        String infoDNILongitud = "Máx 9 caracteres";
 
         if ((infoName.isEmpty() && infoPhone == 0 && infoDni.isEmpty() &&
-                infoPassw.isEmpty() && infoConfPassw.isEmpty()) &&
+                infoPassw.isEmpty() && infoConfPassw.isEmpty()) ||
                 (infoName.isEmpty() || infoPhone == 0 ||
                         infoDni.isEmpty() || infoPassw.isEmpty() || infoConfPassw.isEmpty())) {
             this.update_Name.setError(infoEmpty);
@@ -89,7 +91,7 @@ public class Editar_Usuario extends AppCompatActivity {
             return;
         }
 
-        if(infoName.length() > 20) {
+        if(infoName.length() > 25) {
             this.update_Name.setError(infoNameLongitud);
             return;
         }
@@ -99,6 +101,15 @@ public class Editar_Usuario extends AppCompatActivity {
             return;
         }
 
+        if (infoDni.toString().length() < 9 || infoDni.toString().length() > 9) {
+            this.update_Dni.setError(infoDNILongitud);
+            return;
+        }
+
+        if (!this.validarDNI(infoDni)) {
+            this.update_Dni.setError(infoIncorrectDNI);
+            return;
+        }
 
         if(!infoConfPassw.equals(infoPassw)) {
             this.update_Passw.setError(infoPasswIncorrect);
@@ -107,8 +118,10 @@ public class Editar_Usuario extends AppCompatActivity {
         }
 
         this.dao = new UsuarioDAO();
-        this.usuario = new Usuario(infoName, this.usuario.getEmail(), infoPhone, infoDni, infoPassw);
-        if(this.dao.actualizarUsuario(this.usuario)) {
+        // Error: Desaparece el Id
+        Usuario newUsuario = new Usuario(infoName, this.usuario.getEmail(), infoPhone, infoDni, infoPassw);
+        if(this.dao.actualizarUsuario(newUsuario)) {
+            this.usuario = this.dao.buscarUsuario(newUsuario.getEmail());
             this.dao.cerrarConexion();
             Intent intent = new Intent(this, Info_Usuario.class);
             intent.putExtra("usuario",usuario);
@@ -117,6 +130,43 @@ public class Editar_Usuario extends AppCompatActivity {
             this.dao.cerrarConexion();
         }
 
+    }
 
+    private boolean validarDNI(String dni) {
+        if (dni == null) {
+            return false;
+        }
+
+        String cleanedDni = dni.trim().replace("-", "").toUpperCase();
+
+        if (!cleanedDni.matches("^[XYZ0-9][0-9]{7}[A-Z]$")) {
+            return false;
+        }
+
+        try {
+
+            String numeroStr = cleanedDni.substring(0, 8);
+            char primerCaracter = numeroStr.charAt(0);
+
+            if (primerCaracter == 'X') {
+                numeroStr = numeroStr.replace('X', '0');
+            } else if (primerCaracter == 'Y') {
+                numeroStr = numeroStr.replace('Y', '1');
+            } else if (primerCaracter == 'Z') {
+                numeroStr = numeroStr.replace('Z', '2');
+            }
+
+            char letraIntroducida = cleanedDni.charAt(8);
+
+            String letrasDni = "TRWAGMYFPDXBNJZSQVHLCKE";
+            int numero = Integer.parseInt(numeroStr);
+            int resto = numero % 23;
+            char letraCorrecta = letrasDni.charAt(resto);
+
+            return letraIntroducida == letraCorrecta;
+
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

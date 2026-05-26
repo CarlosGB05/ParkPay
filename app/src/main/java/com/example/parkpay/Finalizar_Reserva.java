@@ -77,7 +77,8 @@ public class Finalizar_Reserva extends AppCompatActivity {
             // Retornamos el arreglo de bytes listo para la base de datos
             this.dao = new ReservaDAO();
             if (this.dao.insertarCodigoQR(this.reserva.getIdReserva(),stream.toByteArray())) {
-                Toast.makeText(this, "Codigo QR insertada", Toast.LENGTH_LONG).show();
+                this.dao.cerrarConexion();
+                return;
             }
             this.dao.cerrarConexion();
 

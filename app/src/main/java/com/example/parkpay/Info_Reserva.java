@@ -3,16 +3,24 @@ package com.example.parkpay;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import java.time.LocalDate;
 
 import dao.ReservaDAO;
 import models.Reserva;
@@ -23,8 +31,9 @@ public class Info_Reserva extends AppCompatActivity {
     private Usuario usuario;
     private Reserva reserva;
     private ReservaDAO dao;
-    private ImageView codigoQR;
+    private ImageView codigoQR, verQr;
     private TextView nombreParking, ubicacionParking, fechaReserva, matricula;
+    private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +57,13 @@ public class Info_Reserva extends AppCompatActivity {
 
         cargarCodigoQR();
         cargarInfo();
+
+        this.codigoQR.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                verCodigoQr();
+            }
+        });
     }
 
     public void cargarCodigoQR() {
@@ -71,6 +87,38 @@ public class Info_Reserva extends AppCompatActivity {
         Intent intent = new Intent(this, Lista_Reservas.class);
         intent.putExtra("usuario",usuario);
         startActivity(intent);
+    }
+
+    public void verCodigoQr() {
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_codigo_qr, null);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(Info_Reserva.this);
+        builder.setView(dialogView);
+
+        builder.setCancelable(true);
+
+        Info_Reserva.this.dialog = builder.create();
+        dialog.show();
+
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+            dialog.getWindow().setLayout(
+                    WindowManager.LayoutParams.WRAP_CONTENT,
+                    WindowManager.LayoutParams.WRAP_CONTENT
+            );
+
+            dialog.getWindow().setGravity(Gravity.CENTER);
+        }
+
+        this.verQr = dialogView.findViewById(R.id.id_dialog_qr);
+        this.dao = new ReservaDAO();
+        byte[] img = this.dao.buscarCodigoQR(this.reserva.getIdReserva());
+        this.dao.cerrarConexion();
+        if (img != null) {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(img, 0, img.length);
+            this.verQr.setImageBitmap(bitmap);
+        }
     }
 
 }

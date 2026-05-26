@@ -22,6 +22,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.material.materialswitch.MaterialSwitch;
+
 import dao.ReservaDAO;
 import models.Parking;
 import models.Reserva;
@@ -35,7 +37,7 @@ public class Pagar_Parking extends AppCompatActivity {
     private ReservaDAO dao;
     private TextView nombre, calificacion, textPrecio, error;
     private EditText matricula;
-    private Switch cocheElectrico;
+    private MaterialSwitch cocheElectrico;
     private String fechaIndicada, fechaInicio, fechaFinal;
     private double precio, precioTotal;
     private boolean valorSwitch;
@@ -135,8 +137,9 @@ public class Pagar_Parking extends AppCompatActivity {
             return;
         }
 
-        if (validarMatricula(this.matricula.getText().toString())) {
-            Toast.makeText(this, "Matrícula válida", Toast.LENGTH_SHORT).show();
+        if (!validarMatricula(this.matricula.getText().toString())) {
+            this.error.setText("Matrícula no valida");
+            return;
         }
 
         this.reserva = new Reserva(this.usuario.getIdUsuario(), this.parking.getNombre(),this.parking.getDireccion(),

@@ -61,9 +61,12 @@ public class Registro extends AppCompatActivity {
         String infoTelefLongitud = "Máx 9 Números";
         String infoEmailIncorrect = "No es un Email real";
         String infoPasswIncorrect = "No coinciden";
+        String infoIncorrectDNI = "DNI no valido";
+        String infoDNILongitud = "Máx 9 caracteres";
+        String infoEmailExist = "Ya esta registrado este Email";
 
         if ((infoName.isEmpty() && infoPhone == 0 && infoDni.isEmpty() &&
-                infoEmail.isEmpty() && infoPassw.isEmpty() && infoConfPassw.isEmpty()) &&
+                infoEmail.isEmpty() && infoPassw.isEmpty() && infoConfPassw.isEmpty()) ||
                 (infoName.isEmpty() || infoPhone == 0 || infoDni.isEmpty() ||
                         infoEmail.isEmpty() || infoPassw.isEmpty() || infoConfPassw.isEmpty())) {
             this.text_name.setError(infoEmpty);
@@ -75,16 +78,36 @@ public class Registro extends AppCompatActivity {
             return;
         }
 
-        if(infoName.length() > 20) {
+        if(infoName.length() > 25) {
             this.text_name.setError(infoNameLongitud);
             return;
         }
 
-        // Crear metodo de comprobar si el DNI es verdadero
-
-
         if(infoPhone.toString().length() < 9 || infoPhone.toString().length() > 9) {
             this.text_phone.setError(infoTelefLongitud);
+            return;
+        }
+
+        if (infoDni.toString().length() < 9 || infoDni.toString().length() > 9) {
+            this.text_dni.setError(infoDNILongitud);
+            return;
+        }
+
+        if (!this.validarDNI(infoDni)) {
+            this.text_dni.setError(infoIncorrectDNI);
+            return;
+        }
+
+        this.dao = new UsuarioDAO();
+        if (this.dao.comprobarEmail(infoEmail)) {
+            this.dao.cerrarConexion();
+            this.text_email.setError(infoEmailExist);
+            return;
+        }
+        this.dao.cerrarConexion();
+
+        if (!validarEmail(infoEmail)) {
+            this.text_email.setError(infoEmailIncorrect);
             return;
         }
 
@@ -92,6 +115,8 @@ public class Registro extends AppCompatActivity {
             this.text_email.setError(infoEmailIncorrect);
             return;
         }
+
+
 
         if(!infoConfPassw.equals(infoPassw)) {
             this.text_passw.setError(infoPasswIncorrect);
@@ -120,4 +145,55 @@ public class Registro extends AppCompatActivity {
         intent.putExtra("usuario",usuario);
         startActivity(intent);
     }
+
+    private boolean validarDNI(String dni) {
+        if (dni == null) {
+            return false;
+        }
+
+        String cleanedDni = dni.trim().replace("-", "").toUpperCase();
+
+        if (!cleanedDni.matches("^[XYZ0-9][0-9]{7}[A-Z]$")) {
+            return false;
+        }
+
+        try {
+
+            String numeroStr = cleanedDni.substring(0, 8);
+            char primerCaracter = numeroStr.charAt(0);
+
+            if (primerCaracter == 'X') {
+                numeroStr = numeroStr.replace('X', '0');
+            } else if (primerCaracter == 'Y') {
+                numeroStr = numeroStr.replace('Y', '1');
+            } else if (primerCaracter == 'Z') {
+                numeroStr = numeroStr.replace('Z', '2');
+            }
+
+            char letraIntroducida = cleanedDni.charAt(8);
+
+            String letrasDni = "TRWAGMYFPDXBNJZSQVHLCKE";
+            int numero = Integer.parseInt(numeroStr);
+            int resto = numero % 23;
+            char letraCorrecta = letrasDni.charAt(resto);
+
+            return letraIntroducida == letraCorrecta;
+
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private boolean validarEmail(String email) {
+        if (email == null) {
+            return false;
+        }
+
+        String cleanedEmail = email.trim();
+
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(cleanedEmail).matches();
+    }
+
+
+
 }

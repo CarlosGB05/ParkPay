@@ -10,7 +10,6 @@
         style="@style/Widget.Material3.CardView.Outlined"
         android:layout_width="340dp"
         android:layout_height="410dp"
-
         android:layout_marginTop="15dp"
         android:background="@color/white"
         app:cardBackgroundColor="@android:color/transparent"

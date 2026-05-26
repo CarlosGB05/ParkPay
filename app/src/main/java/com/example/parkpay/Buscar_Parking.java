@@ -233,19 +233,6 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
         });
     }
 
-    private void ocultarTeclado() {
-        // 1. Obtener el servicio del sistema encargado del teclado
-        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-
-        // 2. Obtener la vista que tiene el foco actualmente
-        View view = this.getCurrentFocus();
-
-        // 3. Si hay una vista con el foco, pedir al servicio que oculte el teclado
-        if (view != null) {
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
-    }
-
     public void volverMenu(View view) {
         Intent intent = new Intent(this, Menu_Inicial.class);
         intent.putExtra("usuario",usuario);
@@ -255,6 +242,11 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
     public void listaParkings(View view) {
         if (this.ubicacionIndicado == null) {
             Toast.makeText(this, "Indica el lugar a buscar", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if (this.ratioBusqueda <= 0) {
+            Toast.makeText(this, "Indica un ratio MAYOR a 0", Toast.LENGTH_LONG).show();
             return;
         }
 

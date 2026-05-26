@@ -23,6 +23,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import models.Parking;
@@ -122,6 +123,19 @@ public class Reservar_Calendario extends AppCompatActivity {
         if ((this.posicionFinal <= this.posicionInicio) || (this.posicionInicio == -1 && this.posicionFinal == -1)) {
             Toast.makeText(this, "La hora FINAL debe ser superior a la INICIAL", Toast.LENGTH_LONG).show();
             return;
+        }
+
+        if (this.fechaSeleccionada != null && this.fechaSeleccionada.equals(this.fechaActual)) {
+            LocalTime horaActual = java.time.LocalTime.now();
+
+            String horaSeleccionadaStr = this.listaHoras[this.posicionInicio];
+
+            LocalTime horaSeleccionada = LocalTime.parse(horaSeleccionadaStr);
+
+            if (horaSeleccionada.isBefore(horaActual)) {
+                Toast.makeText(this, "No puedes seleccionar una hora ya pasada", Toast.LENGTH_LONG).show();
+                return;
+            }
         }
 
         double precioTotal = (this.posicionFinal - this.posicionInicio) * this.precio;
