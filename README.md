@@ -54,3 +54,10 @@ app/src/main/java/
     │   └── ReservaDAO.java
     └── conexionBBDD/
         └── ConexionBBDD.java
+
+## 🛠️ Tecnologías utilizadas
+
+* **Java** → Lenguaje principal
+* **Android Studio** → Entorno de desarrollo
+* **PostgreSQL** → Base de datos
+* **JDBC (Driver PostgreSQL)** → Conexión directa a la base de datos
