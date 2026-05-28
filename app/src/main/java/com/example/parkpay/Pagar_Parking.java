@@ -35,7 +35,7 @@ public class Pagar_Parking extends AppCompatActivity {
     private Parking parking;
     private Reserva reserva;
     private ReservaDAO dao;
-    private TextView nombre, calificacion, textPrecio, error;
+    private TextView nombre, textPrecio, error;
     private EditText matricula;
     private MaterialSwitch cocheElectrico;
     private String fechaIndicada, fechaInicio, fechaFinal;

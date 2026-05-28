@@ -116,8 +116,6 @@ public class Registro extends AppCompatActivity {
             return;
         }
 
-
-
         if(!infoConfPassw.equals(infoPassw)) {
             this.text_passw.setError(infoPasswIncorrect);
             this.text_confPassw.setError(infoPasswIncorrect);

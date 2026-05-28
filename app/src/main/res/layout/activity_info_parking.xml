@@ -13,7 +13,6 @@
         android:layout_width="352dp"
         android:layout_height="652dp"
         android:layout_marginTop="15dp"
-
         app:cardBackgroundColor="@android:color/transparent"
         app:cardCornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -85,7 +84,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Ubicación:"
+                        android:text="@string/parking_ubicacion"
                         android:textColor="#495057"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -115,7 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="18dp"
-                    android:text="* El precio indicado es €/hora"
+                    android:text="@string/parking_precio"
                     android:textColor="#E53935"
                     android:textSize="16sp"
                     android:visibility="visible"
@@ -139,7 +138,7 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="24dp"
                     android:onClick="comprobarDatos"
-                    android:text="RESERVAR"
+                    android:text="@string/bt_reserva"
                     android:textColor="@color/white"
                     android:textSize="16dp"
                     android:textStyle="bold"
@@ -157,7 +156,7 @@
                     android:layout_width="220dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="8dp"
-                    android:text="Volver Lista"
+                    android:text="@string/bt_lista_parking"
                     android:layout_marginLeft="35dp"
                     app:cornerRadius="20dp"
                     app:strokeColor="#1E293B"

@@ -79,6 +79,8 @@ public class Info_Usuario extends AppCompatActivity {
 
                 ImageView iconoAzul = dialogView.findViewById(R.id.id_img_icon_azul);
                 ImageView iconoRosa = dialogView.findViewById(R.id.id_img_icon_rosa);
+                ImageView iconoRojo = dialogView.findViewById(R.id.id_img_icon_rojo);
+                ImageView iconoVerde = dialogView.findViewById(R.id.id_img_icon_verde);
 
                 iconoAzul.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -104,7 +106,31 @@ public class Info_Usuario extends AppCompatActivity {
                     }
                 });
 
-                Button btn = dialogView.findViewById(R.id.id_bt_accept_icon);
+                iconoRojo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v2) {
+                        UsuarioDAO dao = new UsuarioDAO();
+                        if (dao.actualizarIcono(Info_Usuario.this.usuario.getIdUsuario(),"icono_rojo")) {
+                            Info_Usuario.this.imagenIcono.setImageResource(R.mipmap.icono_rojo);
+                            dao.cerrarConexion();
+                            dialog.dismiss();
+                        }
+                    }
+                });
+
+                iconoVerde.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v2) {
+                        UsuarioDAO dao = new UsuarioDAO();
+                        if (dao.actualizarIcono(Info_Usuario.this.usuario.getIdUsuario(),"icono_verde")) {
+                            Info_Usuario.this.imagenIcono.setImageResource(R.mipmap.icono_verde);
+                            dao.cerrarConexion();
+                            dialog.dismiss();
+                        }
+                    }
+                });
+
+                Button btn = dialogView.findViewById(R.id.id_bt_canceled_icon);
                 btn.setOnClickListener(vc -> {
 
                     dialog.dismiss();
@@ -124,6 +150,14 @@ public class Info_Usuario extends AppCompatActivity {
                 break;
             case "icono_rosa":
                 this.imagenIcono.setImageResource(R.mipmap.icono_rosa);
+                this.dao.cerrarConexion();
+                break;
+            case "icono_rojo":
+                this.imagenIcono.setImageResource(R.mipmap.icono_rojo);
+                this.dao.cerrarConexion();
+                break;
+            case "icono_verde":
+                this.imagenIcono.setImageResource(R.mipmap.icono_verde);
                 this.dao.cerrarConexion();
                 break;
             default:

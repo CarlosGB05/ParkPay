@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.CalendarView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -119,6 +120,49 @@ public class Info_Reserva extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeByteArray(img, 0, img.length);
             this.verQr.setImageBitmap(bitmap);
         }
+    }
+
+    public void eliminarReserva(View view) {
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_delete, null);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(Info_Reserva.this);
+        builder.setView(dialogView);
+
+        builder.setCancelable(true);
+
+        Info_Reserva.this.dialog = builder.create();
+        dialog.show();
+
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+            dialog.getWindow().setLayout(
+                    WindowManager.LayoutParams.WRAP_CONTENT,
+                    WindowManager.LayoutParams.WRAP_CONTENT
+            );
+
+            dialog.getWindow().setGravity(Gravity.CENTER);
+        }
+
+    }
+
+    public void aceptarEliminar(View view) {
+        this.dao = new ReservaDAO();
+        if (this.dao.eliminarCodigoQR(this.reserva.getIdReserva())) {
+            if (this.dao.eliminarReserva(this.reserva.getIdReserva())) {
+                Toast.makeText(this, "Reserva Eliminada", Toast.LENGTH_LONG).show();
+                this.dialog.dismiss();
+                this.dao.cerrarConexion();
+                Intent intent = new Intent(this, Lista_Reservas.class);
+                intent.putExtra("usuario",usuario);
+                startActivity(intent);
+            }
+        }
+        this.dao.cerrarConexion();
+    }
+
+    public void cancelarEliminar(View view) {
+        this.dialog.dismiss();
     }
 
 }

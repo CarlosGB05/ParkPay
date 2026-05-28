@@ -22,7 +22,6 @@ public class Login extends AppCompatActivity {
     private EditText text_email, text_passw;
     private TextView resultadoError;
     private String errorInfo;
-
     private Usuario usuario;
     private UsuarioDAO dao;
 
@@ -60,7 +59,6 @@ public class Login extends AppCompatActivity {
             return;
         }
 
-        // Comprueba cuales son los campos vacios
         if(datoCorreo.isEmpty() || datoContra.isEmpty()){
             if(datoCorreo.isEmpty()) {
                 errorInfo += "Rellena el Correo \n";

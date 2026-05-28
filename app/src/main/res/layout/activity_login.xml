@@ -36,7 +36,6 @@
                 android:layout_marginTop="20dp"
                 android:textAlignment="center"
                 android:textColor="@android:color/holo_red_dark"
-                android:fontFamily="monospace"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -114,8 +113,7 @@
                     android:inputType="textEmailAddress"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
-                    android:textSize="14sp"
-                    android:fontFamily="monospace"/>
+                    android:textSize="14sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -143,8 +141,7 @@
                     android:inputType="textPassword"
                     android:textColor="@color/black"
                     android:textColorHint="@color/black"
-                    android:textSize="14sp"
-                    android:fontFamily="monospace"/>
+                    android:textSize="14sp"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView

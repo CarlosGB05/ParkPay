@@ -13,7 +13,6 @@
         android:layout_width="352dp"
         android:layout_height="652dp"
         android:layout_marginTop="15dp"
-
         app:cardBackgroundColor="@android:color/transparent"
         app:cardCornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -192,26 +191,47 @@
 
             </androidx.cardview.widget.CardView>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/materialButton2"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="240dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:onClick="volverLista"
-                android:text="Volver Reservas"
-                android:textColor="@color/black"
-                app:cornerRadius="20dp"
-                app:icon="@drawable/icon_reservas"
-                app:iconGravity="textStart"
-                app:iconPadding="8dp"
-                app:iconSize="20dp"
-                app:iconTint="@color/black"
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView2"
-                app:strokeColor="#1E293B"
-                app:strokeWidth="2dp" />
+                android:padding="12dp">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/materialButton2"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="25dp"
+                    android:onClick="volverLista"
+                    android:text="@string/bt_volver_reserva"
+                    android:textColor="@color/black"
+                    app:cornerRadius="20dp"
+                    app:icon="@drawable/icon_reservas"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    app:iconSize="20dp"
+                    app:iconTint="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView2"
+                    app:strokeColor="#1E293B"
+                    app:strokeWidth="2dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/id_btn_reserva_delete"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@drawable/icon_delete"
+                    android:onClick="eliminarReserva"
+                    app:backgroundTint="#ED3B18"
+                    app:cornerRadius="20dp" />
+
+            </LinearLayout>
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

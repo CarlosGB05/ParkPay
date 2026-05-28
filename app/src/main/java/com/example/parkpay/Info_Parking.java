@@ -39,7 +39,6 @@ public class Info_Parking extends AppCompatActivity {
 
         this.usuario = (Usuario) getIntent().getSerializableExtra("usuario");
         this.parking = (Parking) getIntent().getSerializableExtra("parking");
-//        this.listaParkings = getIntent().getSerializableExtra("lista");
 
         this.nombre = findViewById(R.id.id_text_parking_nombre);
         this.nombre.setText(this.parking.getNombre());

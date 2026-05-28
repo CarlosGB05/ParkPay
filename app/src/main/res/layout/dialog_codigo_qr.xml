@@ -18,7 +18,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!-- El ImageView que recibirá el Bitmap desde Kotlin -->
         <ImageView
             android:id="@+id/id_dialog_qr"
             android:layout_width="match_parent"

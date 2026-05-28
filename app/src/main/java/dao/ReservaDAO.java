@@ -124,6 +124,28 @@ public class ReservaDAO {
         return null;
     }
 
+    public boolean eliminarReserva(int id){
+        if(id > 0){
+            String queryInsert = "DELETE FROM reservas where idReserva = ?;";
+            try {
+                this.sentenciaPara = connection.prepareStatement(queryInsert);
+                this.sentenciaPara.setInt(1, id);
+
+                this.sentenciaPara.executeUpdate();
+                System.out.println("Reserva Eliminada");
+                return true;
+
+            } catch (SQLException e) {
+                System.out.println("Error al eliminar la reserva");
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+
+    // CODIGOS QR
+
     public boolean insertarCodigoQR(int id, byte[] codigo){
         String queryInsert = "INSERT INTO codigos_qr "
                 + "(idReserva_FK, imagen) values (?,?);";
@@ -164,6 +186,25 @@ public class ReservaDAO {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public boolean eliminarCodigoQR(int id){
+        if(id > 0){
+            String queryInsert = "DELETE FROM codigos_qr where idReserva_FK = ?;";
+            try {
+                this.sentenciaPara = connection.prepareStatement(queryInsert);
+                this.sentenciaPara.setInt(1, id);
+
+                this.sentenciaPara.executeUpdate();
+                System.out.println("Codigo QR Eliminada");
+                return true;
+
+            } catch (SQLException e) {
+                System.out.println("Error al eliminar el Codigo QR");
+                e.printStackTrace();
+            }
+        }
+        return false;
     }
 
     public void cerrarConexion() {

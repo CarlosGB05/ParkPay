@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,7 +16,6 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.ArrayList;
 
 import dao.ReservaDAO;
-import models.Parking;
 import models.Reserva;
 import models.Usuario;
 
@@ -75,7 +73,7 @@ public class Lista_Reservas extends AppCompatActivity {
             this.error.setText("No tienes ninguna reserva realizada");
         }
 
-        AdapPerso_Reservas adapter = new AdapPerso_Reservas(this,this.listaReservas);
+        Adapter_Reservas adapter = new Adapter_Reservas(this,this.listaReservas);
         lista.setAdapter(adapter);
     }
 }

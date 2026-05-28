@@ -127,28 +127,6 @@ public class UsuarioDAO {
         }
         return false;
     }
-//
-//    public ArrayList<Usuario> tierList(){
-//        ArrayList<Usuario> lista = new ArrayList<>();
-//        String queryInsert = "Select u.nombre, u.puntos_totales From usuarios as u" +
-//                " ORDER BY u.puntos_totales DESC;";
-//        try {
-//            this.sentenciaPara = connection.prepareStatement(queryInsert);
-//            this.result = this.sentenciaPara.executeQuery();
-//            while(this.result.next() && lista.size() < 5){
-//                Usuario usuario = new Usuario(
-//                        this.result.getString("nombre"),
-//                        this.result.getInt("puntos_totales"));
-//                lista.add(usuario);
-//            }
-//            return lista;
-//
-//            } catch (SQLException e) {
-//                System.out.println("Error al buscar en tabla Usuarios");
-//                e.printStackTrace();
-//            }
-//        return null;
-//    }
 
     public boolean insertarIconoUsuario(Integer id){
         try {

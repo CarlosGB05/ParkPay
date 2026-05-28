@@ -118,7 +118,6 @@ public class Editar_Usuario extends AppCompatActivity {
         }
 
         this.dao = new UsuarioDAO();
-        // Error: Desaparece el Id
         Usuario newUsuario = new Usuario(infoName, this.usuario.getEmail(), infoPhone, infoDni, infoPassw);
         if(this.dao.actualizarUsuario(newUsuario)) {
             this.usuario = this.dao.buscarUsuario(newUsuario.getEmail());

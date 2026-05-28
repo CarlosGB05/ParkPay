@@ -2,10 +2,13 @@ package com.example.parkpay;
 
 import static java.security.AccessController.getContext;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,18 +26,22 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 //import com.example.parkpay.databinding.ActivityMapsBinding;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.AutocompletePrediction;
 import com.google.android.libraries.places.api.model.AutocompleteSessionToken;
@@ -52,11 +59,10 @@ import models.Usuario;
 public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-//    private ActivityMapsBinding binding;
+    private FusedLocationProviderClient fusedLocationClient;
     private AutoCompleteTextView autoComplete;
     private PlacesClient placesClient;
-    private SeekBar barrita;
-    private Slider barrita2;
+    private Slider barrita;
     private TextView valorBarrita;
     private LatLng ubicacionIndicado;
     private int ratioBusqueda;
@@ -73,26 +79,11 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
 
         this.usuario = (Usuario) getIntent().getSerializableExtra("usuario");
 
-//        this.barrita = findViewById(R.id.id_seekBar);
-        this.barrita2 = findViewById(R.id.id_seekBar);
+        this.barrita = findViewById(R.id.id_seekBar);
         this.valorBarrita = findViewById(R.id.id_text_valor_seekbar);
         this.valorBarrita.setText("0Km");
 
-//        this.barrita.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-//            @Override
-//            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//                ratioBusqueda = progress;
-//                valorBarrita.setText(String.valueOf(progress) + "Km");
-//            }
-//
-//            @Override
-//            public void onStartTrackingTouch(SeekBar seekBar) {}
-//
-//            @Override
-//            public void onStopTrackingTouch(SeekBar seekBar) {}
-//        });
-
-        this.barrita2.addOnChangeListener(new Slider.OnChangeListener() {
+        this.barrita.addOnChangeListener(new Slider.OnChangeListener() {
             @Override
             public void onValueChange(@NonNull Slider slider, float value, boolean fromUser) {
                 ratioBusqueda = (int) value;
@@ -135,13 +126,10 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
                 // 1. Extraer el texto de la opción seleccionada (ej: "Yepes, Toledo, España")
                 String lugarSeleccionado = parent.getItemAtPosition(position).toString();
 
-                // 2. Notificar al usuario o hacer log (Opcional)
-                Toast.makeText(Buscar_Parking.this, "Cargando: " + lugarSeleccionado, Toast.LENGTH_SHORT).show();
-
-                // 3. ¡LA ACCIÓN CLAVE!: Llamar a la función que mueve el mapa
+                // 2. ¡LA ACCIÓN CLAVE!: Llamar a la función que mueve el mapa
                 geolocalizarYFocalizar(lugarSeleccionado);
 
-                // 4. (Opcional) Ocultar el teclado para ver mejor el mapa
+                // 3. (Opcional) Ocultar el teclado para ver mejor el mapa
                 autoComplete.dismissDropDown(); // Fuerza el cierre de la lista visualmente
                 autoComplete.clearFocus();      // Quita el cursor del buscador
 
@@ -180,19 +168,63 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         mMap = googleMap;
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        obtenerUbicacionActual();
+    }
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Si el usuario aceptó los permisos en la ventana flotante, obtener la ubicación
+                obtenerUbicacionActual();
+            }
+        }
+    }
+
+    private void obtenerUbicacionActual() {
+        // 1. Verificar si el usuario ya dio los permisos de ubicación
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            // Si no los tiene, solicitarlos al usuario
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            return;
+        }
+
+        // 2. Activar el botón azul nativo de "Mi Ubicación" en el mapa (Opcional)
+        mMap.setMyLocationEnabled(true);
+
+        // 3. Obtener la última ubicación conocida por el dispositivo
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Si se logró obtener la ubicación con éxito
+                        if (location != null) {
+                            // Crear el objeto LatLng con los datos reales del GPS
+                            LatLng miUbicacion = new LatLng(location.getLatitude(), location.getLongitude());
+
+                            // Añadir el marcador en tu posición actual
+                            mMap.addMarker(new MarkerOptions()
+                                    .position(miUbicacion)
+                                    .title("Estoy aquí"));
+
+                            // Mover la cámara hacia tu posición con un nivel de zoom adecuado (ej. 15f)
+                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(miUbicacion, 15f));
+                        }
+                    }
+                });
     }
 
     private void obtenerPredicciones(String query, ArrayAdapter<String> adapter, ArrayList<String> lista) {
-        Log.d("PRUEBA", "Petición enviada para: " + query);
+        System.out.println("PRUEBA: Petición enviada para: " + query);
 
-        // Si por alguna razón sigue siendo null, salimos del método sin romper la app
+        // Si por alguna razon sigue siendo null, salimos del metodo sin romper la app
         if (placesClient == null) {
-            Toast.makeText(this, "Places no ha sido inicializado",Toast.LENGTH_LONG).show();
+            System.out.println("Places no ha sido inicializado");
             return;
         }
 
@@ -213,7 +245,6 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
             }
             adapter.notifyDataSetChanged(); // Refresca la lista visualmente
 
-            // Cambia estas líneas al final del SuccessListener:
             adapter.clear();
             lista.clear();
             for (AutocompletePrediction prediction : response.getAutocompletePredictions()) {
@@ -225,10 +256,10 @@ public class Buscar_Parking extends AppCompatActivity implements OnMapReadyCallb
             this.autoComplete.showDropDown();
         }).addOnFailureListener(exception -> {
             Toast.makeText(this, "No se pudo obtener el lugar",Toast.LENGTH_LONG).show();
-            Log.e("PLACES_ERROR", "Causa: " + exception.getMessage());
+            System.out.println("PLACES_ERROR: Causa: " + exception.getMessage());
             if (exception instanceof ApiException) {
                 ApiException apiException = (ApiException) exception;
-                Log.e("PLACES_ERROR", "Código de estado: " + apiException.getStatusCode());
+                System.out.println("PLACES_ERROR: Código de estado: " + apiException.getStatusCode());
             }
         });
     }

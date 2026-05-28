@@ -83,8 +83,11 @@
                     android:layout_height="wrap_content"
                     android:icon="@android:drawable/ic_menu_my_calendar"
                     android:onClick="indicarFechas"
-                    android:text="Seleccionar Horario"
-                    android:layout_marginTop="24dp" />
+                    android:text="@string/parking_horario"
+                    android:layout_marginTop="24dp"
+                    android:backgroundTint="#0C385A"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/til_name"
@@ -126,19 +129,12 @@
                         android:layout_width="160dp"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="¿Es eléctrico?: "
+                        android:text="@string/parking_vehiculo"
                         android:textColor="#FFB300"
                         android:textSize="20sp"
                         android:textStyle="bold"
                         android:layout_marginTop="7dp"
                         android:layout_marginLeft="20dp"/>
-
-<!--                    <Switch-->
-<!--                        android:id="@+id/id_switch_parking_vehiculo"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginTop="5dp"-->
-<!--                        android:layout_marginRight="40dp"/>-->
 
                     <com.google.android.material.materialswitch.MaterialSwitch
                         android:id="@+id/id_switch_parking_vehiculo"
@@ -180,7 +176,7 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="6dp"
                     android:onClick="pagarParking"
-                    android:text="ACEPTAR PAGO"
+                    android:text="@string/bt_pagar"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     app:backgroundTint="#103152"
@@ -197,7 +193,7 @@
                     android:layout_marginLeft="45dp"
                     android:layout_marginTop="8dp"
                     android:onClick="cancelarPago"
-                    android:text="Cancelar"
+                    android:text="@string/bt_canceled"
                     android:textColor="@color/black"
                     app:cornerRadius="20dp"
                     app:strokeColor="#1E293B"

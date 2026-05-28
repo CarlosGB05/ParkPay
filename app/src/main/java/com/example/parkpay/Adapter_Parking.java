@@ -11,13 +11,13 @@ import java.util.ArrayList;
 
 import models.Parking;
 
-public class AdapterPersonalizado extends BaseAdapter {
+public class Adapter_Parking extends BaseAdapter {
 
     private ArrayList<Parking> listaParkings;
     private Context context;
     private LayoutInflater inflater;
 
-    public AdapterPersonalizado(Context c, ArrayList<Parking> p) {
+    public Adapter_Parking(Context c, ArrayList<Parking> p) {
         this.context = c;
         this.inflater = LayoutInflater.from(c);
         this.listaParkings = p;
@@ -47,8 +47,6 @@ public class AdapterPersonalizado extends BaseAdapter {
         TextView direccion = view.findViewById(R.id.id_text_listview_direccion2);
         direccion.setText(this.listaParkings.get(position).getDireccion());
 
-//        RatingBar reseña = view.findViewById(R.id.id_text_listview_reseña);
-//        reseña.setRating((float) this.listaParkings.get(position).getCalificacion());
         TextView calificacion = view.findViewById(R.id.id_text_listview_resena2);
         calificacion.setText(String.valueOf(this.listaParkings.get(position).getCalificacion()));
 

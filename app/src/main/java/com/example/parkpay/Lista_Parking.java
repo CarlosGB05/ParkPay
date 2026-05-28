@@ -2,41 +2,27 @@ package com.example.parkpay;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
-import com.google.android.libraries.places.api.model.CircularBounds;
-import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
-import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import models.Parking;
 import models.Usuario;
@@ -46,7 +32,6 @@ public class Lista_Parking extends AppCompatActivity {
     private Usuario usuario;
     private LatLng ubicacion;
     private int ratio;
-    private GoogleMap mMap;
     private PlacesClient placesClient;
     private ArrayList<Parking> listaParkings;
     private ListView lista;
@@ -140,7 +125,7 @@ public class Lista_Parking extends AppCompatActivity {
                             this.error.setText("No se encontraron ningún Parking por esa zona");
                             return;
                         }
-                        AdapterPersonalizado adapter = new AdapterPersonalizado(this,this.listaParkings);
+                        Adapter_Parking adapter = new Adapter_Parking(this,this.listaParkings);
                         lista.setAdapter(adapter);
 
                     } catch (JSONException e) {

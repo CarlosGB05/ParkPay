@@ -5,10 +5,19 @@
     <string name="bt_accept">Aceptar</string>
     <string name="bt_play">Iniciar</string>
     <string name="bt_canceled">Cancelar</string>
+    <string name="bt_ver_reservas">VER MIS RESERVAS</string>
+    <string name="bt_volver_menu">Volver Menu</string>
+    <string name="bt_reserva">RESERVAR</string>
+    <string name="bt_lista_parking">Volver Lista</string>
+    <string name="bt_volver_reserva">Volver</string>
+    <string name="bt_pagar">ACEPTAR PAGO</string>
+    <string name="bt_conf_calendario">CONFIRMAR HORARIO</string>
+    <string name="bt_carga_img">Cargar Imagen</string>
+    <string name="bt_edit">EDITAR PERFIL</string>
 
     <!-- PAG LOGIN -->
     <string name="login_title">Iniciar Sesión</string>
-    <string name="login_ph_email">Email@</string>
+    <string name="login_ph_email">Correo@</string>
     <string name="login_ph_password">Contraseña</string>
     <string name="login_description_register">¿No tienes una cuenta?</string>
     <string name="login_register">Regístrate</string>
@@ -26,11 +35,11 @@
     <!-- PAG MENU -->
     <string name="menu_title">Parkay</string>
     <string name="menu_btn_parking">Buscar Parkings</string>
-    <string name="menu_text_parking">Aquí se podrán buscar los Parkings a partir de una ubicación</string>
+    <string name="menu_text_parking">Encuentra plazas libres cerca de ti</string>
     <string name="menu_btn_reserv">Mis Reservas</string>
-    <string name="menu_text_reserv">Aquí se mostrarán las reservas de los Parkings alquilados</string>
+    <string name="menu_text_reserv">Encuentra todas tus reservas realizadas</string>
     <string name="menu_btn_account">Cuenta</string>
-    <string name="menu_text_account">Aquí se mostrará la información del usuario</string>
+    <string name="menu_text_account">Encuentra información de tu cuenta</string>
     <string name="menu_btn_exit">Salir App</string>
     <string name="title_activity_maps">MapsActivity</string>
 
@@ -40,10 +49,27 @@
     <string name="user_text_new_dni">Ej: 123456789</string>
     <string name="user_update_user">Guardar Cambios</string>
     <string name="user_update">Editar Usuario</string>
+    <string name="user_icon">Elige un Icono</string>
+    <string name="user_info">INFORMACIÓN PERSONAL</string>
+    <string name="user_phone">Teléfono</string>
+    <string name="user_dni">DNI</string>
+    <string name="user_email">Correo</string>
 
     <!-- PAG BUSCAR PARKING -->
     <string name="parking_btn_buscar">Buscar Parkings</string>
     <string name="parking_title_list">Resultados</string>
+    <string name="parking_ubicacion">Ubicación:</string>
+    <string name="parking_precio">* El precio indicado es €/hora</string>
+    <string name="parking_horario">Seleccionar Horario</string>
+    <string name="parking_vehiculo">¿Es eléctrico?: </string>
+    <string name="parking_calendario">Seleccionar Dia</string>
+    <string name="parking_hora_inicio">Hora Entrada</string>
+    <string name="parking_hora_final">Hora Salida</string>
+
+    <!-- PAG RESERVAS -->
+    <string name="reservas_pago">Gracias por tu reserva</string>
+    <string name="reservas_pago_info">* Para ver toda la información, ve a la opción Mis Reservas</string>
+    <string name="reservas_lista">Mis Reservas</string>
 
 
 </resources>

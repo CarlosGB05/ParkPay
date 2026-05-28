@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -57,6 +56,14 @@ public class Menu_Inicial extends AppCompatActivity {
                 this.iconUser.setImageResource(R.mipmap.icono_rosa);
                 this.dao.cerrarConexion();
                 break;
+            case "icono_rojo":
+                this.iconUser.setImageResource(R.mipmap.icono_rojo);
+                this.dao.cerrarConexion();
+                break;
+            case "icono_verde":
+                this.iconUser.setImageResource(R.mipmap.icono_verde);
+                this.dao.cerrarConexion();
+                break;
             default:
                 this.iconUser.setImageResource(R.mipmap.icono_default);
                 this.dao.cerrarConexion();
@@ -65,7 +72,7 @@ public class Menu_Inicial extends AppCompatActivity {
     }
 
     public void salirApp(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, Inicio.class);
         startActivity(intent);
     }
 

@@ -9,16 +9,15 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import models.Parking;
 import models.Reserva;
 
-public class AdapPerso_Reservas extends BaseAdapter {
+public class Adapter_Reservas extends BaseAdapter {
 
     private ArrayList<Reserva> listaReservas;
     private Context context;
     private LayoutInflater inflater;
 
-    public AdapPerso_Reservas(Context c, ArrayList<Reserva> p) {
+    public Adapter_Reservas(Context c, ArrayList<Reserva> p) {
         this.context = c;
         this.inflater = LayoutInflater.from(c);
         this.listaReservas = p;

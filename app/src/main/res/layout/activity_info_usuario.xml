@@ -13,7 +13,6 @@
         android:layout_width="352dp"
         android:layout_height="652dp"
         android:layout_marginTop="15dp"
-
         app:cardBackgroundColor="@android:color/transparent"
         app:cardCornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,7 +61,7 @@
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.0"
-                        app:strokeColor="#043A61"
+                        app:strokeColor="#FFB300"
                         app:strokeWidth="5dp"
                         android:layout_marginLeft="10dp">
 
@@ -93,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="12dp"
                     android:letterSpacing="0.05"
-                    android:text="INFORMACIÓN PERSONAL"
+                    android:text="@string/user_info"
                     android:textColor="#103152"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -118,7 +117,7 @@
                             android:layout_width="32dp"
                             android:layout_height="32dp"
                             android:src="@drawable/ic_phone"
-                            app:tint="#103152" />
+                            app:tint="#FFB300" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -129,7 +128,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Teléfono"
+                                android:text="@string/user_phone"
                                 android:textColor="#757575"
                                 android:textSize="12sp" />
 
@@ -164,7 +163,7 @@
                             android:layout_width="32dp"
                             android:layout_height="32dp"
                             android:src="@drawable/ic_card"
-                            app:tint="#103152" />
+                            app:tint="#FFB300" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -175,7 +174,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="DNI"
+                                android:text="@string/user_dni"
                                 android:textColor="#757575"
                                 android:textSize="12sp" />
 
@@ -210,7 +209,7 @@
                             android:layout_width="32dp"
                             android:layout_height="32dp"
                             android:src="@drawable/ic_mail"
-                            app:tint="#103152" />
+                            app:tint="#FFB300" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -221,7 +220,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Email"
+                                android:text="@string/user_email"
                                 android:textColor="#757575"
                                 android:textSize="12sp" />
 
@@ -241,7 +240,7 @@
                     android:id="@+id/btnEditarPerfil"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:text="EDITAR PERFIL"
+                    android:text="@string/bt_edit"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     app:backgroundTint="#103152"
@@ -263,7 +262,7 @@
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="#1E293B"
-                    android:textSize="16dp"
+                    android:textSize="14dp"
                     app:cornerRadius="29dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.493"

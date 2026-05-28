@@ -29,14 +29,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="24dp"
-            tools:context=".MainActivity"
+            tools:context=".Inicio"
             android:background="@color/white">
 
             <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="Gracias por tu reserva "
+                android:text="@string/reservas_pago"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 android:gravity="center"
@@ -46,7 +46,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 android:textColor="@color/black"/>
 
-            <!-- Contenedor del QR con bordes redondeados y sombra ligera -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvQrContainer"
                 android:layout_width="0dp"
@@ -60,7 +59,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/tvTitle"
                 android:layout_marginTop="35dp">
 
-                <!-- El ImageView que recibirá el Bitmap desde Kotlin -->
                 <ImageView
                     android:id="@+id/id_img_qr"
                     android:layout_width="match_parent"
@@ -76,7 +74,7 @@
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="* Para ver toda la información, ve a la opción Mis Reservas"
+                android:text="@string/reservas_pago_info"
                 android:textAlignment="center"
                 android:textColor="#E53935"
                 android:textSize="14sp"
@@ -91,7 +89,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="15dp"
                 android:onClick="verListaReservas"
-                android:text="VER MIS RESERVAS"
+                android:text="@string/bt_ver_reservas"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 app:backgroundTint="#103152"
@@ -109,7 +107,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="15dp"
                 android:onClick="volverMenu"
-                android:text="Volver Menu"
+                android:text="@string/bt_volver_menu"
                 android:textColor="@color/black"
                 app:cornerRadius="20dp"
                 app:icon="@drawable/icon_home"
