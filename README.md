@@ -1,5 +1,5 @@
 ```markdown
-# 🅿 ParkPay - Reserva de Estacionamiento en Parkings
+# 🚗 ParkPay - Reservas de Estacionamiento de Parkings
 
 Aplicación Android para la gestión y reserva de estacionamientos en Parking.
 Esta aplicación nos permite registrarnos, consultar los Parkings disponibles en un ratio indicado y
@@ -15,14 +15,6 @@ realizar reservas de las mismas.
 * **Mis Reservas** → Listado de todas las reservas realizadas del usuario
 * **Usuario** → Ver toda la información del usuario
 
-## 🅿 Precio/Hora por Reservas (€/h)
-
-| Calificación | Precio/hora |
-| :--- | :--- |
-| 0 - 1.9 | 1.5 € |
-| 2 - 3.9 | 3.5 € |
-| 4 - 4.4 | 4.5 € |
-| 4.5 - 5 | 6 € |
 
 ## 📁 Estructura del proyecto
 
@@ -54,6 +46,35 @@ app/src/main/java/
     │   └── ReservaDAO.java
     └── conexionBBDD/
         └── ConexionBBDD.java
+
+
+## 🅿 Precio/Hora por Reservas (€/h)
+
+| Calificación | Precio/hora |
+| :--- | :--- |
+| 0 - 1.9 | 1.5 € |
+| 2 - 3.9 | 3.5 € |
+| 4 - 4.4 | 4.5 € |
+| 4.5 - 5 | 6 € |
+
+
+## 🚀 Cómo ejecutar el proyecto
+
+1. Clona el repositorio:
+
+```bash
+git clone [https://github.com/CarlosGB05/ParkPay.git](https://github.com/CarlosGB05/ParkPay.git)
+
+2. Abre el proyecto en Android Studio
+
+3. Crea una base de datos en pgAdmin con el nombre ParkPay
+
+4. Dentro de esa database, ejecuta el Script que hay en el proyecto en la carpeta conexionBBDD
+
+5. Configura la IP en ConexionBBDD.java si usas dispositivo físico
+
+6. Ejecuta la app en el emulador o dispositivo
+
 
 ## 🛠️ Tecnologías utilizadas
 
