@@ -45,7 +45,8 @@ app/src/main/java/
     │   ├── UsuarioDAO.java
     │   └── ReservaDAO.java
     └── conexionBBDD/
-        └── ConexionBBDD.java
+        ├── ConexionBBDD.java
+        └── BBDD_ParkPay.sql
 
 
 ## 🅿 Precio/Hora por Reservas (€/h)
@@ -58,22 +59,20 @@ app/src/main/java/
 | 4.5 - 5 | 6 € |
 
 
-## 🚀 Cómo ejecutar el proyecto
+## 🚀 Cómo ejecutar mi proyecto
 
-1. Clona el repositorio:
+1. Clonar el repositorio:
 
 ```bash
 git clone [https://github.com/CarlosGB05/ParkPay.git](https://github.com/CarlosGB05/ParkPay.git)
 
-2. Abre el proyecto en Android Studio
+2. Abre el proyecto en Android Studio.
 
-3. Crea una base de datos en pgAdmin con el nombre ParkPay
+3. Crea una base de datos en pgAdmin con el nombre ParkPay.
 
-4. Dentro de esa database, ejecuta el Script que hay en el proyecto en la carpeta conexionBBDD
+4. Ejecuta el Script que hay en el proyecto en la carpeta conexionBBDD
 
-5. Configura la IP en ConexionBBDD.java si usas dispositivo físico
-
-6. Ejecuta la app en el emulador o dispositivo
+5. Ejecuta la App.
 
 
 ## 🛠️ Tecnologías utilizadas
@@ -81,4 +80,3 @@ git clone [https://github.com/CarlosGB05/ParkPay.git](https://github.com/CarlosG
 * **Java** → Lenguaje principal
 * **Android Studio** → Entorno de desarrollo
 * **PostgreSQL** → Base de datos
-* **JDBC (Driver PostgreSQL)** → Conexión directa a la base de datos
